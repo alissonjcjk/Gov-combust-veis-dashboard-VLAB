@@ -1,59 +1,68 @@
-# GovCombustiveisDashboard
+### Dashboard de Combustíveis - Setor de Transportes (V-Lab)
+Este projeto é uma aplicação frontend moderna desenvolvida para o desafio técnico da V-Lab. O objetivo é fornecer aos gestores do setor de transportes uma visão gerencial clara sobre o consumo e preço de combustíveis da frota nacional, seguindo rigorosamente o Padrão Digital de Governo (DSGOV).
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.0.3.
+## Diferenciais do Projeto
+Arquitetura Facade: Implementação do padrão Facade para abstrair a complexidade do estado e serviços, garantindo componentes focados apenas na apresentação (UI).
 
-## Development server
+Tailwind CSS v4: Utilização da versão mais recente do framework para uma estilização performática e fiel ao Design System do Governo Federal.
 
-To start a local development server, run:
+Alta Performance com Vite: Build e desenvolvimento otimizados utilizando o motor Vite/Esbuild integrado ao Angular 21.
 
-```bash
-ng serve
-```
+Visualização de Dados: Gráficos interativos para análise de evolução de preços e consumo regional utilizando Chart.js.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Tecnologias Utilizadas
+Framework: Angular 21
 
-## Code scaffolding
+Linguagem: TypeScript
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Estilização: Tailwind CSS (Configurado com cores oficiais #1351B4, #0c326f).
 
-```bash
-ng generate component component-name
-```
+Gerenciamento de Estado: Pattern Facade com Observables (RxJS).
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Gráficos: Ng2-charts / Chart.js.
 
-```bash
-ng generate --help
-```
+Mock de API: JSON Server.
 
-## Building
+## Estrutura do Projeto
+O projeto segue uma arquitetura modular e escalável:
 
-To build the project run:
+Plaintext
 
-```bash
-ng build
-```
+src/app/
+├── core/           # Serviços globais, Modelos e Facades (Lógica de Negócio)
+├── shared/         # Componentes reutilizáveis (Header, Cards, Botões - Padrão DSGOV)
+└── features/       # Módulos principais (Dashboard, Consulta, Detalhes)
+ Como Executar o Projeto
+Clonar o repositório:
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Bash
 
-## Running unit tests
+git clone https://github.com/SEU_USUARIO/gov-combustiveis-dashboard.git
+cd gov-combustiveis-dashboard
+Instalar dependências:
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+Bash
 
-```bash
-ng test
-```
+npm install
+Executar Aplicação + API Mock: Este comando inicia simultaneamente o servidor Angular e o JSON Server:
 
-## Running end-to-end tests
+Bash
 
-For end-to-end (e2e) testing, run:
+npm run dev
+Acesse o Dashboard em: http://localhost:4200
 
-```bash
-ng e2e
-```
+API Mock rodando em: http://localhost:3000
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## Padrão Digital de Governo
+A interface foi construída seguindo as diretrizes do Gov.br, incluindo:
 
-## Additional Resources
+Uso da paleta de cores oficial.
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Tipografia Montserrat/Rawline recomendada.
+
+Acessibilidade e navegação clara através de Breadcrumbs.
+
+Desenvolvido por Alisson da Silva Bernadino. Candidato à vaga de Estágio/Graduação na V-Lab.
+
+### Screenshots
+(imagens aqui)
