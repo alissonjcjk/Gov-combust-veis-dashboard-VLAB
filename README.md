@@ -1,38 +1,103 @@
 # 📊 Dashboard de Combustíveis — Setor de Transportes (V-Lab)
 
-Este projeto é uma aplicação frontend moderna desenvolvida como parte do desafio técnico da V-Lab para candidatos à vaga de Estágio/Graduação.
+**•** Este projeto é uma aplicação frontend moderna desenvolvida como parte do desafio técnico da V-Lab para candidatos à vaga de Estágio/Graduação.
 
-O objetivo é fornecer aos gestores do setor de transportes uma visão gerencial clara e confiável sobre o consumo e o preço de combustíveis da frota nacional, seguindo rigorosamente o Padrão Digital de Governo (DSGOV).
+**•** O objetivo é fornecer aos gestores do setor de transportes uma visão gerencial clara e confiável sobre o consumo e o preço de combustíveis da frota nacional, seguindo rigorosamente o Padrão Digital de Governo (DSGOV).
 
-#### ✨ Diferenciais do Projeto
+### ✨ Informações gerais do Projeto
 
-Arquitetura Facade
+**•** Arquitetura Facade
 Implementação do padrão Facade para abstrair a complexidade de estado e serviços, mantendo os componentes focados exclusivamente na camada de apresentação (UI), conforme boas práticas do Angular.
 
-Tailwind CSS v4
+**•** Tailwind CSS v4
 Utilização da versão mais recente do framework para uma estilização performática, consistente e fiel ao Design System do Governo Federal.
 
-Alta Performance com Vite
+**•** Alta Performance com Vite
 Build e ambiente de desenvolvimento otimizados utilizando Vite / Esbuild, integrados ao Angular 21.
 
-Visualização de Dados
+**•** Visualização de Dados
 Gráficos interativos para análise de evolução de preços e consumo regional, utilizando Chart.js.
 
-#### 🧰 Tecnologias Utilizadas
+### 🧰 Tecnologias Utilizadas
 
-Framework: Angular 21
+**•** Framework: Angular 21
 
-Linguagem: TypeScript
+**•** Linguagem: TypeScript
 
-Estilização: Tailwind CSS (cores oficiais #1351B4, #0C326F)
+**•** Estilização: Tailwind CSS (cores oficiais #1351B4, #0C326F)
 
-Gerenciamento de Estado: Pattern Facade com Observables (RxJS)
+**•** Gerenciamento de Estado: Pattern Facade com Observables (RxJS)
 
-Gráficos: Ng2-charts / Chart.js
+**•** Gráficos: Ng2-charts / Chart.js
 
-Mock de API: JSON Server
+**•** Mock de API: JSON Server
 
-#### 🗂️ Estrutura do Projeto
+### 📊 Funcionalidades Implementadas
+##### 🧭 Header e Layout (Gov.br)
+
+**•** Barra institucional do Governo Federal
+
+**•** Links de acessibilidade
+
+**•** Navegação principal (Dashboard / Consulta)
+
+**•** Breadcrumbs para navegação estrutural
+
+##### 📈 Dashboard — Visão Gerencial
+
+**•** KPIs
+
+**•** Preço médio nacional (Gasolina / Diesel)
+
+**•** Total de litros consumidos
+
+**•** Quantidade de postos monitorados
+
+**•** Gráficos
+
+**•** Evolução do preço nos últimos 6 meses
+
+**•** Consumo por estado (UF)
+
+##### 📋 Consulta de Abastecimentos
+
+**•** Tabela de registros contendo:
+
+- Data
+
+- Posto
+
+- Cidade / UF
+
+- Tipo de combustível
+
+- Valor por litro
+
+- Total pago
+
+##### Filtros avançados:
+
+- Estado (UF)
+
+- Tipo de combustível
+
+- Período (data)
+
+- Paginação
+
+##### 🔍 Detalhe do Registro
+
+**•** Informações do motorista e veículo
+
+- Nome
+
+- CPF (mascarado)
+
+- Placa
+
+- Botão “Reportar Erro” (simulação via modal / console.log)
+
+### 🗂️ Estrutura do Projeto
 
 O projeto segue uma arquitetura modular e escalável, separando claramente responsabilidades:
 
@@ -57,7 +122,7 @@ Aplicação: http://localhost:4200
 
 API Mock: http://localhost:3000
 
-#### 🇧🇷 Padrão Digital de Governo (DSGOV)
+### 🇧🇷 Padrão Digital de Governo (DSGOV)
 
 A interface foi construída seguindo as diretrizes do Gov.br, incluindo:
 
@@ -69,11 +134,11 @@ Navegação clara com breadcrumbs
 
 Atenção à acessibilidade e usabilidade
 
-#### 👤 Autor
+### 👤 Autor
 
 Alisson da Silva Bernardino
 Candidato à vaga de Estágio/Graduação — V-Lab
 
-#### 📸 Screenshots
+### 📸 Screenshots
 
 (Imagens da aplicação em funcionamento serão adicionadas aqui)
