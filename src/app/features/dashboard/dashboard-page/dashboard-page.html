@@ -1,0 +1,26 @@
+<div class="py-6" *ngIf="stats$ | async as stats">
+  <h2 class="text-2xl font-bold text-gov-blue-primary mb-6">Visão Geral</h2>
+  
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div class="bg-white p-6 rounded-lg shadow-sm border-l-8 border-gov-blue-primary">
+      <p class="text-sm text-gray-500 font-bold uppercase">Preço Médio Nacional</p>
+      <p class="text-3xl font-black text-gov-blue-primary">
+        {{ stats.precoMedioNacional | currency:'BRL' }}
+      </p>
+    </div>
+
+    <div class="bg-white p-6 rounded-lg shadow-sm border-l-8 border-gov-yellow">
+      <p class="text-sm text-gray-500 font-bold uppercase">Total Consumido (Litros)</p>
+      <p class="text-3xl font-black text-gray-800">
+        {{ stats.totalConsumido | number }} L
+      </p>
+    </div>
+
+    <div class="bg-white p-6 rounded-lg shadow-sm border-l-8 border-green-600">
+      <p class="text-sm text-gray-500 font-bold uppercase">Postos Monitorados</p>
+      <p class="text-3xl font-black text-gray-800">
+        {{ stats.postosAtivos }}
+      </p>
+    </div>
+  </div>
+</div>
