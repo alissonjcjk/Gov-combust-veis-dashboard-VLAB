@@ -1,12 +1,16 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { GovHeader } from './shared/components/gov-header/gov-header';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
-  templateUrl: './app.html',
-  styleUrl: './app.css'
+  standalone: true,
+  imports: [RouterOutlet, GovHeader], // Importe aqui
+  template: `
+    <app-gov-header></app-gov-header>
+    <main class="container mx-auto p-4">
+      <router-outlet></router-outlet>
+    </main>
+  `,
 })
-export class App {
-  protected readonly title = signal('gov-combustiveis-dashboard');
-}
+export class App {}

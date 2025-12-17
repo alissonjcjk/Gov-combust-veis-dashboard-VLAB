@@ -3,4 +3,16 @@
 
 @import "tailwindcss";
 
+@theme {
+  --color-gov-blue-primary: #1351b4;
+  --color-gov-blue-dark: #0c326f;
+  --color-gov-gray-light: #f8f8f8;
+  --color-gov-yellow: #ffcc00;
+  
+  --font-sans: "Rawline", "Montserrat", "sans-serif";
+}
 
+/* Estilo padrão do corpo seguindo o DSGOV */
+body {
+  @apply bg-[var(--color-gov-gray-light)] text-[#333333] font-sans;
+}
