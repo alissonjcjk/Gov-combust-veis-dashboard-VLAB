@@ -1,20 +1,40 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { AbastecimentoFacade } from '../../../core/facades/abastecimento.facade';
+import { Abastecimento } from '../../../core/models/abastecimento.model'; // Importe o model
+import { debounceTime, distinctUntilChanged, map, combineLatest, startWith, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-consulta-lista',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './consulta-lista.html',
 })
 export class ConsultaListaComponent implements OnInit {
   private facade = inject(AbastecimentoFacade);
   
-  // Lista de abastecimentos vinda da Facade
-  abastecimentos$ = this.facade.abastecimentos$;
+  searchControl = new FormControl('', { nonNullable: true }); // Garante que nunca seja null
+
+  // Adicionamos a tipagem explícita : Observable<Abastecimento[]>
+  abastecimentosFiltrados$: Observable<Abastecimento[]> = combineLatest([
+    this.facade.abastecimentos$,
+    this.searchControl.valueChanges.pipe(
+      startWith(''),
+      debounceTime(300),
+      distinctUntilChanged()
+    )
+  ]).pipe(
+    map(([lista, termo]) => {
+      const filterTerm = termo.toLowerCase();
+      return lista.filter(item => 
+        item.motorista.toLowerCase().includes(filterTerm) || 
+        item.placa.toLowerCase().includes(filterTerm)
+      );
+    })
+  );
 
   ngOnInit(): void {
-    this.facade.carregarDadosDash(); // Carrega os dados ao iniciar
+    this.facade.carregarDadosDash();
   }
 }
