@@ -10,6 +10,7 @@ export interface Abastecimento {
   posto: string;
   cidade: string;
   uf: string;
+  cpf: string;
   combustivel: 'Gasolina' | 'Etanol' | 'Diesel';
   valorLitro: number;
   totalPago: number;

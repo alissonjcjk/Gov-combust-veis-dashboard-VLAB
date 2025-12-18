@@ -1,0 +1,48 @@
+<div class="py-8 max-w-3xl mx-auto px-4" *ngIf="abastecimento$ | async as item; else loading">
+  <div class="flex items-center gap-4 mb-6">
+    <button routerLink="/consulta" class="text-blue-600 hover:underline flex items-center gap-2 font-bold">
+      ← Voltar para a lista
+    </button>
+  </div>
+
+  <div class="bg-white rounded-lg shadow-lg border border-gray-200 overflow-hidden">
+    <div class="bg-gov-blue-primary p-6">
+      <h2 class="text-white text-xl font-bold uppercase">Detalhes do Abastecimento #{{ item.id }}</h2>
+    </div>
+    
+    <div class="p-8 grid grid-cols-1 md:grid-cols-2 gap-y-6 gap-x-12">
+      <div class="border-b pb-2">
+        <p class="text-xs text-gray-500 font-bold uppercase">Motorista</p>
+        <p class="text-lg text-gray-900 font-medium">{{ item.motorista }}</p>
+      </div>
+
+      <div class="border-b pb-2">
+        <p class="text-xs text-gray-500 font-bold uppercase">Placa do Veículo</p>
+        <p class="text-lg text-gray-900 font-mono">{{ item.placa | maskPlaca }}</p>
+      </div>
+       <div class="border-b pb-2">
+        <p class="text-xs text-gray-500 font-bold uppercase">CPF do motorista</p>
+        <p class="text-lg text-gray-900 font-mono">{{ item.cpf | maskCpf }}</p>
+      </div>
+
+      <div class="border-b pb-2">
+        <p class="text-xs text-gray-500 font-bold uppercase">Posto / Local</p>
+        <p class="text-lg text-gray-900">{{ item.posto }} - {{ item.cidade }}/{{ item.uf }}</p>
+      </div>
+
+      <div class="border-b pb-2">
+        <p class="text-xs text-gray-500 font-bold uppercase">Combustível</p>
+        <p class="text-lg text-gray-900">{{ item.combustivel }}</p>
+      </div>
+
+      <div class="border-b pb-2">
+        <p class="text-xs text-gray-500 font-bold uppercase">Valor Total</p>
+        <p class="text-2xl text-gov-blue-primary font-bold">{{ item.totalPago | currency:'BRL' }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #loading>
+  <div class="p-20 text-center text-gray-500">Buscando detalhes do registro...</div>
+</ng-template>

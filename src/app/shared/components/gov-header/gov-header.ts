@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterLink, RouterLinkActive } from '@angular/router'; // Adicione esta linha
 
 @Component({
   selector: 'app-gov-header',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule, RouterLink, RouterLinkActive], // Adicione aqui também
   templateUrl: './gov-header.html',
-  styleUrl: './gov-header.css',
+  styleUrl: './gov-header.css'
 })
-export class GovHeader {
-
-}
+export class GovHeader {}

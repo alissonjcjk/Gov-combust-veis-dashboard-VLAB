@@ -30,6 +30,7 @@
           <th class="px-6 py-3 text-left text-xs font-bold text-gray-500 uppercase">Motorista</th>
           <th class="px-6 py-3 text-left text-xs font-bold text-gray-500 uppercase">Placa</th>
           <th class="px-6 py-3 text-left text-xs font-bold text-gray-500 uppercase">Combustível</th>
+          <th class="px-6 py-3 text-left text-xs font-bold text-gray-500 uppercase">CPF</th>
           <th class="px-6 py-3 text-left text-xs font-bold text-gray-500 uppercase text-right">Total (R$)</th>
           <th class="px-6 py-3 text-center text-xs font-bold text-gray-500 uppercase">Ações</th>
         </tr>
@@ -56,11 +57,17 @@
               {{ item.combustivel }}
             </span>
           </td>
+          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+            {{ item.cpf }}
+          </td>
           <td class="px-6 py-4 whitespace-nowrap text-sm font-bold text-gov-blue-primary text-right">
             {{ item.totalPago | currency:'BRL' }}
           </td>
           <td class="px-6 py-4 whitespace-nowrap text-sm text-center">
-            <button class="text-gov-blue-primary hover:underline font-bold text-xs">DETALHES</button>
+            <button [routerLink]="['/consulta', item.id]"
+                     class="text-gov-blue-primary hover:underline font-bold text-xs">
+                     DETALHES 
+            </button>
           </td>
         </tr>
 

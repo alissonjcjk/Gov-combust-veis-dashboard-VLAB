@@ -1,6 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 import { AbastecimentoFacade } from '../../../core/facades/abastecimento.facade';
 import { Abastecimento } from '../../../core/models/abastecimento.model'; // Importe o model
 import { debounceTime, distinctUntilChanged, map, combineLatest, startWith, Observable } from 'rxjs';
@@ -8,7 +9,7 @@ import { debounceTime, distinctUntilChanged, map, combineLatest, startWith, Obse
 @Component({
   selector: 'app-consulta-lista',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink],
   templateUrl: './consulta-lista.html',
 })
 export class ConsultaListaComponent implements OnInit {

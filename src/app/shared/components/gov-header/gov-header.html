@@ -24,12 +24,31 @@
       <!-- Direita: Links, Ícones e Botão Entrar -->
       <div class="flex items-center gap-6">
         <!-- Links (Ocultos em mobile se desejar) -->
-        <nav class="hidden lg:flex items-center gap-4 text-[#1351b4] text-xs font-semibold">
-          <a href="#" class="hover:underline">Link de acesso 1</a>
-          <a href="#" class="hover:underline">Link de acesso 2</a>
-          <a href="#" class="hover:underline">Link de acesso 3</a>
-          <a href="#" class="hover:underline">Link de acesso 4</a>
+        <nav class="hidden lg:flex items-center gap-2 text-sm font-medium">
+          <a
+            routerLink="/dashboard"
+            routerLinkActive="bg-blue-100"
+            [routerLinkActiveOptions]="{ exact: true }"
+            class="px-3 py-1.5 rounded-full text-[#1351B4]
+                  hover:bg-blue-100
+                  focus:outline-none focus:ring-2 focus:ring-blue-200
+                  transition-colors duration-200"
+          >
+            Dashboard
+          </a>
+
+          <a
+            routerLink="/consulta"
+            routerLinkActive="bg-blue-100"
+            class="px-3 py-1.5 rounded-full text-[#1351B4]
+                  hover:bg-blue-100
+                  focus:outline-none focus:ring-2 focus:ring-blue-200
+                  transition-colors duration-200"
+          >
+            Consulta
+          </a>
         </nav>
+
 
         <!-- Divisor Vertical -->
         <div class="hidden lg:block h-6 border-l border-gray-300"></div>
@@ -82,7 +101,7 @@
           <h2 class="text-xl font-normal text-gray-700 leading-tight tracking-tight">
             Agencia Nacional de Gás e Petróleo
           </h2>
-          <p class="text-xs text-gray-500 font-light">Subtítulo do Header</p>
+          <p class="text-xs text-gray-500 font-light">Painel Gerencial de Combustíveis</p>
         </div>
       </div>
 

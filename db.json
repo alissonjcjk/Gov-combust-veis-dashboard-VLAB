@@ -5,18 +5,20 @@
       "data": "2023-12-01",
       "posto": "Posto Alvorada",
       "cidade": "Brasília",
+      "cpf": "11056311410",
       "uf": "DF",
       "combustivel": "Gasolina",
       "valorLitro": 5.85,
       "totalPago": 250.00,
       "motorista": "Carlos Andrade",
-      "placa": "BRA-2E19"
+      "placa": "BRA2E19"
     },
     {
       "id": 2,
       "data": "2023-12-05",
       "posto": "Posto Ipiranga",
       "cidade": "São Paulo",
+      "cpf": "71728334497",
       "uf": "SP",
       "combustivel": "Diesel",
       "valorLitro": 6.10,
