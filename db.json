@@ -31,5 +31,13 @@
     "precoMedioNacional": 5.95,
     "totalConsumido": 15420,
     "postosAtivos": 128
-  }
+  },
+  "historicoPrecos": [
+  { "mes": "Jan", "valor": 5.85 },
+  { "mes": "Fev", "valor": 5.90 },
+  { "mes": "Mar", "valor": 6.02 },
+  { "mes": "Abr", "valor": 5.98 },
+  { "mes": "Mai", "valor": 5.92 },
+  { "mes": "Jun", "valor": 5.95 }
+]
 }

@@ -6,6 +6,8 @@ import { AbastecimentoFacade } from '../../../core/facades/abastecimento.facade'
 import { Abastecimento } from '../../../core/models/abastecimento.model'; // Importe o model
 import { debounceTime, distinctUntilChanged, map, combineLatest, startWith, Observable } from 'rxjs';
 
+
+
 @Component({
   selector: 'app-consulta-lista',
   standalone: true,
@@ -34,6 +36,12 @@ export class ConsultaListaComponent implements OnInit {
       );
     })
   );
+  ufControl = new FormControl('');
+  combustivelControl = new FormControl('');
+  dataInicioControl = new FormControl('');
+  dataFimControl = new FormControl('');
+
+  ufs = ['AC','AL','AP','AM','BA','CE','DF','ES','GO','MA','MT','MS','MG','PA','PB','PR','PE','PI','RJ','RN','RS','RO','RR','SC','SP','SE','TO'];
 
   ngOnInit(): void {
     this.facade.carregarDadosDash();

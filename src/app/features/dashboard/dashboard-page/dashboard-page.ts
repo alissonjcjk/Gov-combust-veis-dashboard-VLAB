@@ -39,6 +39,28 @@ export class DashboardPageComponent implements OnInit {
     ]
   };
 
+    public lineChartData: ChartConfiguration<'line'>['data'] = {
+    labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun'],
+    datasets: [
+      {
+        data: [5.85, 5.90, 6.02, 5.98, 5.92, 5.95],
+        label: 'Preço Médio (R$)',
+        borderColor: '#1351B4',
+        backgroundColor: 'rgba(19, 81, 180, 0.1)',
+        fill: true,
+        tension: 0.4
+      }
+    ]
+  };
+
+    public lineChartOptions: ChartConfiguration<'line'>['options'] = {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: true, position: 'top' }
+      }
+    };
+
   ngOnInit(): void {
     this.facade.carregarDadosDash();
   }

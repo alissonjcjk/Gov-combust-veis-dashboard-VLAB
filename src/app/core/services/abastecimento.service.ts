@@ -20,4 +20,8 @@ export class AbastecimentoService {
   getStats(): Observable<DashboardStats> {
     return this.http.get<DashboardStats>(`${this.API}/kpis`);
   }
+
+  getHistorico(): Observable<any[]> {
+  return this.http.get<any[]>(`${this.API}/historicoPrecos`);
+}
 }
