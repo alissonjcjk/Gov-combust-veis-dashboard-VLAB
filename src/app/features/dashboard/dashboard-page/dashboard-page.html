@@ -23,4 +23,23 @@
       </p>
     </div>
   </div>
+  <div class="mt-8">
+  <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+    <div class="flex items-center justify-between mb-6">
+      <h3 class="text-sm font-bold text-gray-500 uppercase tracking-widest">
+        Distribuição de Consumo por Regional
+      </h3>
+      <!-- Badge de unidade opcional -->
+    </div>
+    
+    <!-- Aumentei a altura para 350px e adicionei um pouco mais de padding -->
+    <div class="relative w-full h-[350px]">
+      <canvas baseChart
+        [data]="barChartData"
+        [options]="barChartOptions"
+        [type]="barChartType">
+      </canvas>
+    </div>
+  </div>
+</div>
 </div>

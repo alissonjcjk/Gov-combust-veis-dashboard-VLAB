@@ -1,5 +1,8 @@
-
-//Isso garante que a aplicação seja fortemente tipada
+export interface DashboardStats {
+  precoMedioNacional: number;
+  totalConsumido: number; // Sincronizado com o HTML
+  postosAtivos: number;    // Sincronizado com o HTML
+}
 
 export interface Abastecimento {
   id: number;
@@ -12,10 +15,4 @@ export interface Abastecimento {
   totalPago: number;
   motorista: string;
   placa: string;
-}
-
-export interface DashboardStats {
-  precoMedioNacional: number;
-  totalLitrosConsumidos: number;
-  postosMonitorados: number;
 }
