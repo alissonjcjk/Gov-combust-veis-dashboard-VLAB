@@ -31,13 +31,14 @@ Para testar a performance da tabela e a visualização dos gráficos com um volu
 Se desejar atualizar o arquivo `db.json` com novos registros (como CPFs, placas e valores aleatórios), siga os passos abaixo na raiz do projeto:
 
  **Criar e ativar o ambiente virtual:**
-   ```bash
-   python3 -m venv venv
-   source venv/bin/activate  # No Linux/macOS
-   # venv\Scripts\activate   # No Windows
-   #pip install faker        #instalar dependências
-   #python3 generate_data.py #executar o script para gerar a massa de dados
-bash```
+
+```bash
+python3 -m venv venv
+source venv/bin/activate  # No Linux/macOS
+# venv\Scripts\activate   # No Windows
+# pip install faker        # instalar dependências
+# python3 generate_data.py # executar o script para gerar a massa de dados
+
 
 
  **Altocontraste**
