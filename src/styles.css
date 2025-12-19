@@ -1,5 +1,49 @@
 /* You can add global styles to this file, and also import other style files */
+/* Estilização do Breadcrumb */
+.br-breadcrumb {
+  display: flex;
+  align-items: center;
+}
 
+.crumb-list {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  gap: 8px; /* Espaço entre os itens */
+}
+
+.crumb {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+}
+
+.crumb a {
+  color: #1351B4; /* Azul Oficial Gov.br */
+  text-decoration: none;
+}
+
+.crumb a:hover {
+  text-decoration: underline;
+}
+
+.crumb.active span {
+  color: #333333; /* Cor do item atual */
+  font-weight: 600;
+}
+
+.chevron {
+  color: #888;
+  margin-right: 8px;
+  font-family: sans-serif;
+  font-weight: normal;
+}
+
+.home-link svg {
+  display: block;
+}
 
 @import "tailwindcss";
 

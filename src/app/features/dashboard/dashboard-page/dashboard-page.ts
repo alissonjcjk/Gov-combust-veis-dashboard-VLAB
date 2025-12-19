@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { AbastecimentoFacade } from '../../../core/facades/abastecimento.facade';
 import { BaseChartDirective } from 'ng2-charts'; // Importação essencial
 import { ChartConfiguration, ChartData, ChartType, Chart, registerables } from 'chart.js';
+import { RouterLink } from '@angular/router';
 Chart.register(...registerables); // Isso registra barras, linhas, eixos, etc.
 
 Chart.register(...registerables); // Registro global obrigatório para o Chart.js v4
@@ -10,7 +11,7 @@ Chart.register(...registerables); // Registro global obrigatório para o Chart.j
 @Component({
   selector: 'app-dashboard-page',
   standalone: true,
-  imports: [CommonModule, BaseChartDirective], // Adicione o BaseChartDirective aqui
+  imports: [CommonModule, BaseChartDirective,RouterLink], // Adicione o BaseChartDirective aqui
   templateUrl: './dashboard-page.html',
 })
 export class DashboardPageComponent implements OnInit {
