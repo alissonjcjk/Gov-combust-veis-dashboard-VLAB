@@ -41,8 +41,10 @@ source venv/bin/activate  # No Linux/macOS
 ```
 **Altocontraste**
 
- **Deploy da aplicação na vercel
- **gov-combust-veis-dashboard-vlab-fmiouan2j-alissonjcjks-projects.vercel.app**
+ **Deploy da aplicação na vercel**
+ ```bash
+combust-veis-dashboard-vlab-fmiouan2j-alissonjcjks-projects.vercel.app
+ go*Implementação de testes altomatizados com Jasmine**
 
 ### 🧰 Tecnologias Utilizadas
 
