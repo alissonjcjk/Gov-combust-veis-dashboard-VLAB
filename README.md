@@ -45,7 +45,7 @@ source venv/bin/activate  # No Linux/macOS
 ```bash
 combust-veis-dashboard-vlab-fmiouan2j-alissonjcjks-projects.vercel.app
 ```
-ação de testes altomatizados com Jasmine**
+**aplicação de testes altomatizados com Jasmine**
 
 ### 🧰 Tecnologias Utilizadas
 
