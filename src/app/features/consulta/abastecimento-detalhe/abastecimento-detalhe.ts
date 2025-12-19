@@ -28,6 +28,20 @@ export class AbastecimentoDetalheComponent implements OnInit {
     ))
   );
 
+  reportarErro(item: any): void {
+  console.log('🚨 Erro reportado no abastecimento:', {
+    id: item.id,
+    motorista: item.motorista,
+    cpf: item.cpf,
+    placa: item.placa,
+    posto: item.posto,
+    data: item.data
+  });
+
+  alert('Erro reportado com sucesso! (simulação)');
+}
+
+
   ngOnInit(): void {
     // Dispara a carga caso o usuário entre direto pelo link da URL
     this.facade.carregarDadosDash();
