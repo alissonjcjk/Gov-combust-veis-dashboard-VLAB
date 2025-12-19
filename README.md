@@ -39,9 +39,9 @@ Se desejar atualizar o arquivo `db.json` com novos registros (como CPFs, placas 
    #python3 generate_data.py #executar o script para gerar a massa de dados
 
 
-- **Altocontraste**
+ **Altocontraste**
 
-- **Deploy da aplicação na vercel
+ **Deploy da aplicação na vercel
  **gov-combust-veis-dashboard-vlab-fmiouan2j-alissonjcjks-projects.vercel.app**
 
 ### 🧰 Tecnologias Utilizadas
