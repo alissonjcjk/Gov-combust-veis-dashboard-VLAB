@@ -42,7 +42,7 @@ Se desejar atualizar o arquivo `db.json` com novos registros (como CPFs, placas 
 - **Altocontraste**
 
 - **Deploy da aplicação na vercel
-* **gov-combust-veis-dashboard-vlab-fmiouan2j-alissonjcjks-projects.vercel.app**
+ **gov-combust-veis-dashboard-vlab-fmiouan2j-alissonjcjks-projects.vercel.app**
 
 ### 🧰 Tecnologias Utilizadas
 
