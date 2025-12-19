@@ -23,14 +23,14 @@ Gráficos interativos para análise de evolução de preços e consumo regional,
 - 🐍 Automação de Dados com Python (Item 5)
 Para testar a performance da tabela e a visualização dos gráficos com um volume real de informações, foi desenvolvido um script de automação que gera uma massa de dados aleatória e realista.
 
-- Pré-requisitos
+**Pré-requisitos**
 * Python 3.12+
 * Biblioteca `Faker`
 
-- Como Gerar a Massa de Dados
+**Como Gerar a Massa de Dados**
 Se desejar atualizar o arquivo `db.json` com novos registros (como CPFs, placas e valores aleatórios), siga os passos abaixo na raiz do projeto:
 
-1. **Criar e ativar o ambiente virtual:**
+ **Criar e ativar o ambiente virtual:**
    ```bash
    python3 -m venv venv
    source venv/bin/activate  # No Linux/macOS
@@ -38,8 +38,11 @@ Se desejar atualizar o arquivo `db.json` com novos registros (como CPFs, placas 
    #pip install faker        #instalar dependências
    #python3 generate_data.py #executar o script para gerar a massa de dados
 
-**------**
--- **Altocontraste**
+
+- **Altocontraste**
+
+- **Deploy da aplicação na vercel
+* **gov-combust-veis-dashboard-vlab-fmiouan2j-alissonjcjks-projects.vercel.app**
 
 ### 🧰 Tecnologias Utilizadas
 
