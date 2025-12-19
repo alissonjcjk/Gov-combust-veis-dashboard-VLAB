@@ -44,6 +44,64 @@
 .home-link svg {
   display: block;
 }
+/* ==========================================================================
+   ESTILOS DE ACESSIBILIDADE: PADRÃO GOVERNO FEDERAL (ATUALIZADO)
+   ========================================================================== */
+
+body.high-contrast {
+  background-color: #000 !important;
+  color: #fff !important;
+}
+
+/* Inverte as cores dos containers, cards e cabeçalho */
+body.high-contrast header,
+body.high-contrast .container,
+body.high-contrast main,
+body.high-contrast .bg-white,
+body.high-contrast .bg-gray-50 {
+  background-color: #000 !important;
+  border-color: #fff !important;
+}
+
+body.high-contrast h1, 
+body.high-contrast h2, 
+body.high-contrast h3,
+body.high-contrast p, 
+body.high-contrast span,
+body.high-contrast div,
+body.high-contrast td,
+body.high-contrast th,
+body.high-contrast .text-gov-blue-primary,
+body.high-contrast [class*="text-blue-"],
+body.high-contrast [class*="text-gray-"] {
+  color: #ffffff !important; 
+}
+
+/* Links e Botões: Mantemos brancos com sublinhado para distinção visual */
+body.high-contrast a, 
+body.high-contrast button {
+  color: #ffffff !important;
+  text-decoration: underline !important;
+}
+
+/* Ajuste específico para as bordas coloridas dos cards de KPI */
+body.high-contrast [class*="border-l-4"] {
+  border-left-color: #fff !important;
+}
+
+/* Sobrescreve inputs e campos de busca */
+body.high-contrast input {
+  background-color: #000 !important;
+  color: #fff !important;
+  border: 2px solid #fff !important;
+}
+
+/* Ícones de utilidade no header */
+body.high-contrast .text-\[\#1351b4\],
+body.high-contrast svg {
+  fill: #ffffff !important;
+  color: #ffffff !important;
+}
 
 @import "tailwindcss";
 
