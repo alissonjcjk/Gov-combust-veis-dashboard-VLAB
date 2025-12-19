@@ -36,7 +36,8 @@ Se desejar atualizar o arquivo `db.json` com novos registros (como CPFs, placas 
    source venv/bin/activate  # No Linux/macOS
    # venv\Scripts\activate   # No Windows
    #pip install faker        #instalar dependências
-   #python3 generate_data.py #executar o script para gerar a massa de dados```
+   #python3 generate_data.py #executar o script para gerar a massa de dados
+bash```
 
 
  **Altocontraste**
