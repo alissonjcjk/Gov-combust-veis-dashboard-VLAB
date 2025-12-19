@@ -5,18 +5,20 @@
       "data": "2023-12-01",
       "posto": "Posto Alvorada",
       "cidade": "Brasília",
+      "cpf": "11056311410",
       "uf": "DF",
       "combustivel": "Gasolina",
       "valorLitro": 5.85,
       "totalPago": 250.00,
       "motorista": "Carlos Andrade",
-      "placa": "BRA-2E19"
+      "placa": "BRA2E19"
     },
     {
       "id": 2,
       "data": "2023-12-05",
       "posto": "Posto Ipiranga",
       "cidade": "São Paulo",
+      "cpf": "71728334497",
       "uf": "SP",
       "combustivel": "Diesel",
       "valorLitro": 6.10,
@@ -26,9 +28,16 @@
     }
   ],
   "kpis": {
-    "precoMedioGasolina": 5.78,
-    "precoMedioDiesel": 6.05,
-    "totalLitros": 15420,
-    "postosMonitorados": 128
-  }
+    "precoMedioNacional": 5.95,
+    "totalConsumido": 15420,
+    "postosAtivos": 128
+  },
+  "historicoPrecos": [
+  { "mes": "Jan", "valor": 5.85 },
+  { "mes": "Fev", "valor": 5.90 },
+  { "mes": "Mar", "valor": 6.02 },
+  { "mes": "Abr", "valor": 5.98 },
+  { "mes": "Mai", "valor": 5.92 },
+  { "mes": "Jun", "valor": 5.95 }
+]
 }

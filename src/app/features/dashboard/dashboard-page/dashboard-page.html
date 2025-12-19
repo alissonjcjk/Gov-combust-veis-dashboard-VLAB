@@ -1,0 +1,66 @@
+<div class="py-6" *ngIf="stats$ | async as stats">
+  <h2 class="text-2xl font-bold text-gov-blue-primary mb-6">Visão Geral</h2>
+  
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div class="bg-white p-6 rounded-lg shadow-sm border-l-8 border-gov-blue-primary">
+      <p class="text-sm text-gray-500 font-bold uppercase">Preço Médio Nacional</p>
+      <p class="text-3xl font-black text-gov-blue-primary">
+        {{ stats.precoMedioNacional | currency:'BRL' }}
+      </p>
+    </div>
+
+    <div class="bg-white p-6 rounded-lg shadow-sm border-l-8 border-gov-yellow">
+      <p class="text-sm text-gray-500 font-bold uppercase">Total Consumido (Litros)</p>
+      <p class="text-3xl font-black text-gray-800">
+        {{ stats.totalConsumido | number }} L
+      </p>
+    </div>
+
+    <div class="bg-white p-6 rounded-lg shadow-sm border-l-8 border-green-600">
+      <p class="text-sm text-gray-500 font-bold uppercase">Postos Monitorados</p>
+      <p class="text-3xl font-black text-gray-800">
+        {{ stats.postosAtivos }}
+      </p>
+    </div>
+  </div>
+  <div class="mt-8">
+  <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-8">
+  
+        <div class="bg-white p-6 rounded-lg shadow border border-gray-200">
+          <h3 class="text-gov-blue-primary font-bold uppercase text-sm mb-4">
+            Evolução de Preço (Últimos 6 Meses)
+          </h3>
+
+          <div class="relative w-full h-96">
+            <canvas
+              baseChart
+              [data]="lineChartData"
+              [options]="lineChartOptions"
+              [type]="'line'">
+            </canvas>
+          </div>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg shadow border border-gray-200">
+          <h3 class="text-gov-blue-primary font-bold uppercase text-sm mb-4">
+            Distribuição de Consumo por Regional
+          </h3>
+
+          <div class="relative w-full h-96">
+            <canvas
+              baseChart
+              [data]="barChartData"
+              [options]="barChartOptions"
+              [type]="barChartType">
+            </canvas>
+          </div>
+        </div>
+
+      </div>
+
+
+  </div>
+
+</div>
