@@ -28,6 +28,25 @@ export class AbastecimentoDetalheComponent implements OnInit {
     ))
   );
 
+  reportarErro(item: any): void {
+    // Simula a abertura de um modal simples para capturar a correção
+    const correcao = prompt(`Descreva o erro encontrado no abastecimento #${item.id}:`);
+  
+    if (correcao !== null && correcao.trim() !== '') {
+      console.log('🚀 Enviando correção para o servidor...', {
+        id_registro: item.id,
+        motorista: item.motorista,
+        descricao_erro: correcao,
+        data_reporte: new Date().toISOString()
+      });
+  
+      // Feedback visual para o usuário
+      alert('Obrigado! Sua solicitação de correção foi enviada para análise da equipe técnica.');
+    } else if (correcao === '') {
+      alert('Por favor, descreva o erro para que possamos corrigi-lo.');
+    }
+  }
+
   ngOnInit(): void {
     // Dispara a carga caso o usuário entre direto pelo link da URL
     this.facade.carregarDadosDash();
