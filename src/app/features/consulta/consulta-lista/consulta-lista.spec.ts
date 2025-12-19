@@ -1,20 +1,23 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { ConsultaLista } from './consulta-lista';
-
+import { ConsultaListaComponent } from './consulta-lista';
+import { provideRouter } from '@angular/router';
+import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 describe('ConsultaLista', () => {
-  let component: ConsultaLista;
-  let fixture: ComponentFixture<ConsultaLista>;
+  let component: ConsultaListaComponent;
+  let fixture: ComponentFixture<ConsultaListaComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ConsultaLista]
-    })
-    .compileComponents();
+      imports: [ConsultaListaComponent],
+      providers: [provideRouter([]),
+        provideHttpClient(),
+        provideHttpClientTesting()] // Resolve o erro de ActivatedRoute
+    }).compileComponents();
 
-    fixture = TestBed.createComponent(ConsultaLista);
+    fixture = TestBed.createComponent(ConsultaListaComponent);
     component = fixture.componentInstance;
-    await fixture.whenStable();
+    fixture.detectChanges();
   });
 
   it('should create', () => {
