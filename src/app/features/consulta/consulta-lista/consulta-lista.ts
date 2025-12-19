@@ -4,7 +4,8 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { AbastecimentoFacade } from '../../../core/facades/abastecimento.facade';
 import { Abastecimento } from '../../../core/models/abastecimento.model'; // Importe o model
-import { debounceTime, distinctUntilChanged, map, combineLatest, startWith, Observable } from 'rxjs';
+import { map, combineLatest, startWith, Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 
 
@@ -14,8 +15,13 @@ import { debounceTime, distinctUntilChanged, map, combineLatest, startWith, Obse
   imports: [CommonModule, ReactiveFormsModule, RouterLink],
   templateUrl: './consulta-lista.html',
 })
+
 export class ConsultaListaComponent implements OnInit {
   private facade = inject(AbastecimentoFacade);
+
+  private paginaAtual$ = new BehaviorSubject<number>(1);
+  itensPorPagina = 5; 
+  totalItens = 0;
   
   searchControl = new FormControl('', { nonNullable: true }); // Garante que nunca seja null
 
@@ -26,34 +32,52 @@ export class ConsultaListaComponent implements OnInit {
 
   ufs = ['AC','AL','AP','AM','BA','CE','DF','ES','GO','MA','MT','MS','MG','PA','PB','PR','PE','PI','RJ','RN','RS','RO','RR','SC','SP','SE','TO'];
   // Adicionamos a tipagem explícita : Observable<Abastecimento[]>
-  abastecimentosFiltrados$: Observable<Abastecimento[]> = combineLatest([
-  this.facade.abastecimentos$,
-  this.ufControl.valueChanges.pipe(startWith('')),
-  this.combustivelControl.valueChanges.pipe(startWith('')),
-  this.dataInicioControl.valueChanges.pipe(startWith('')),
-  this.dataFimControl.valueChanges.pipe(startWith(''))
-]).pipe(
-  map(([lista, uf, combustivel, dataInicio, dataFim]) => {
-    return lista.filter(item => {
+  abastecimentosFiltrados$ = combineLatest([
+    this.facade.abastecimentos$,
+    this.ufControl.valueChanges.pipe(startWith('')),
+    this.combustivelControl.valueChanges.pipe(startWith('')),
+    this.dataInicioControl.valueChanges.pipe(startWith('')),
+    this.dataFimControl.valueChanges.pipe(startWith('')),
+    this.paginaAtual$ // Adicionamos a página ao fluxo
+  ]).pipe(
+    map(([lista, uf, combustivel, dataInicio, dataFim, pagina]) => {
+      // 1. Primeiro filtramos a lista completa
+      const filtrados = lista.filter(item => {
+        const filtroUF = !uf || item.uf === uf;
+        const filtroCombustivel = !combustivel || item.combustivel === combustivel;
+        
+        const dataItem = new Date(item.data);
+        const inicio = dataInicio ? new Date(dataInicio) : null;
+        const fim = dataFim ? new Date(dataFim) : null;
+        const filtroData = (!inicio || dataItem >= inicio) && (!fim || dataItem <= fim);
 
-      const filtroUF =
-        !uf || item.uf === uf;
+        return filtroUF && filtroCombustivel && filtroData;
+      });
 
-      const filtroCombustivel =
-        !combustivel || item.combustivel === combustivel;
+      // 2. Guardamos o total para a interface
+      this.totalItens = filtrados.length;
 
-      const dataItem = new Date(item.data);
-      const inicio = dataInicio ? new Date(dataInicio) : null;
-      const fim = dataFim ? new Date(dataFim) : null;
+      // 3. Aplicamos a paginação (fatiamos o array)
+      const inicioIndice = (pagina - 1) * this.itensPorPagina;
+      const fimIndice = inicioIndice + this.itensPorPagina;
+      
+      return filtrados.slice(inicioIndice, fimIndice);
+    })
+  );
 
-      const filtroData =
-        (!inicio || dataItem >= inicio) &&
-        (!fim || dataItem <= fim);
+  // Métodos de navegação
+  mudarPagina(direcao: number) {
+    const novaPagina = this.paginaAtual$.value + direcao;
+    if (novaPagina > 0 && novaPagina <= Math.ceil(this.totalItens / this.itensPorPagina)) {
+      this.paginaAtual$.next(novaPagina);
+    }
+  }
 
-      return filtroUF && filtroCombustivel && filtroData;
-    });
-  })
-);
+  get paginaAtual() {
+    return this.paginaAtual$.value;
+  }
+
+
 
 
   ngOnInit(): void {

@@ -11,12 +11,21 @@ import { AbastecimentoService } from '../services/abastecimento.service';
 export class AbastecimentoFacade {
   private _abastecimentos$ = new BehaviorSubject<Abastecimento[]>([]);
   private _stats$ = new BehaviorSubject<DashboardStats | null>(null);
+  private _paginaAtual$ = new BehaviorSubject<number>(1);
+  public paginaAtual$ = this._paginaAtual$.asObservable();
 
   constructor(private service: AbastecimentoService) {}
 
   // Getters para os componentes assinarem
   get abastecimentos$(): Observable<Abastecimento[]> {
     return this._abastecimentos$.asObservable();
+  }
+
+  carregarAbastecimentos(pagina: number = 1): void {
+    this._paginaAtual$.next(pagina);
+    this.service.getAbastecimentos(pagina, 5).subscribe(dados => {
+      this._abastecimentos$.next(dados);
+    });
   }
 
   get stats$(): Observable<DashboardStats | null> {

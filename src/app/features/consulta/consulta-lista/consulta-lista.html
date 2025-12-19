@@ -119,4 +119,34 @@
       </tbody>
     </table>
   </div>
+
+  <div class="mt-6 flex items-center justify-between bg-white px-4 py-3 border border-gray-200 rounded-lg shadow-sm">
+    <div class="flex flex-1 justify-between items-center">
+      <span class="text-sm text-gray-700">
+        Mostrando registros de <b>{{ totalItens > 0 ? (paginaAtual - 1) * itensPorPagina + 1 : 0 }}</b> 
+        até <b>{{ (paginaAtual * itensPorPagina) > totalItens ? totalItens : (paginaAtual * itensPorPagina) }}</b> 
+        de um total de <b>{{ totalItens }}</b>
+      </span>
+      
+      <div class="inline-flex rounded-md shadow-sm">
+        <button 
+          (click)="mudarPagina(-1)"
+          [disabled]="paginaAtual === 1"
+          class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-l-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          Anterior
+        </button>
+        <div class="px-4 py-2 text-sm font-bold text-gov-blue-primary bg-gray-50 border-t border-b border-gray-300">
+          {{ paginaAtual }}
+        </div>
+        <button 
+          (click)="mudarPagina(1)"
+          [disabled]="paginaAtual >= totalItens / itensPorPagina"
+          class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-r-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          Próximo
+        </button>
+      </div>
+    </div>
+  </div>
 </div>
