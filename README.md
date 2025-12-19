@@ -32,16 +32,15 @@ Se desejar atualizar o arquivo `db.json` com novos registros (como CPFs, placas 
 
  **Criar e ativar o ambiente virtual:**
 
-
-python3 -m venv venv
+```bash
+thon3 -m venv venv
 source venv/bin/activate  # No Linux/macOS
 # venv\Scripts\activate   # No Windows
 # pip install faker        # instalar dependências
 # python3 generate_data.py # executar o script para gerar a massa de dados
 
 
-
- **Altocontraste**
+py **Altocontraste**
 
  **Deploy da aplicação na vercel
  **gov-combust-veis-dashboard-vlab-fmiouan2j-alissonjcjks-projects.vercel.app**
