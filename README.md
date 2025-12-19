@@ -32,7 +32,7 @@ Se desejar atualizar o arquivo `db.json` com novos registros (como CPFs, placas 
 
  **Criar e ativar o ambiente virtual:**
 
-```bash
+
 python3 -m venv venv
 source venv/bin/activate  # No Linux/macOS
 # venv\Scripts\activate   # No Windows
