@@ -18,6 +18,27 @@ Build e ambiente de desenvolvimento otimizados utilizando Vite / Esbuild, integr
 **•** Visualização de Dados
 Gráficos interativos para análise de evolução de preços e consumo regional, utilizando Chart.js.
 
+#### 🚀 Diferenciais Implementados
+
+- 🐍 Automação de Dados com Python (Item 5)
+Para testar a performance da tabela e a visualização dos gráficos com um volume real de informações, foi desenvolvido um script de automação que gera uma massa de dados aleatória e realista.
+
+- Pré-requisitos
+* Python 3.12+
+* Biblioteca `Faker`
+
+- Como Gerar a Massa de Dados
+Se desejar atualizar o arquivo `db.json` com novos registros (como CPFs, placas e valores aleatórios), siga os passos abaixo na raiz do projeto:
+
+1. **Criar e ativar o ambiente virtual:**
+   ```bash
+   python3 -m venv venv
+   source venv/bin/activate  # No Linux/macOS
+   # venv\Scripts\activate   # No Windows
+
+**------**
+-- **Altocontraste**
+
 ### 🧰 Tecnologias Utilizadas
 
 **•** Framework: Angular 21
@@ -101,12 +122,13 @@ Gráficos interativos para análise de evolução de preços e consumo regional,
 
 O projeto segue uma arquitetura modular e escalável, separando claramente responsabilidades:
 
-src/app/
-├── core/        # Serviços globais, modelos e facades (lógica de negócio)
-├── shared/      # Componentes reutilizáveis (Header, Cards, Botões – DSGOV)
-└── features/    # Módulos principais (Dashboard, Consulta, Detalhes)
+-src/app/
+-├── core/        # Serviços globais, modelos e facades (lógica de negócio)
+-├── shared/      # Componentes reutilizáveis (Header, Cards, Botões – DSGOV)
+-└── features/    # Módulos principais (Dashboard, Consulta, Detalhes)
 
-▶️ Como Executar o Projeto
+####▶️ Como Executar o Projeto
+
 1️⃣ Clonar o repositório
 git clone https://github.com/SEU_USUARIO/gov-combustiveis-dashboard.git
 cd gov-combustiveis-dashboard
@@ -121,6 +143,8 @@ npm run dev
 Aplicação: http://localhost:4200
 
 API Mock: http://localhost:3000
+
+
 
 ### 🇧🇷 Padrão Digital de Governo (DSGOV)
 
