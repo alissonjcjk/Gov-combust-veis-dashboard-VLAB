@@ -5,17 +5,14 @@
 **•** O objetivo é fornecer aos gestores do setor de transportes uma visão gerencial clara e confiável sobre o consumo e o preço de combustíveis da frota nacional, seguindo rigorosamente o Padrão Digital de Governo (DSGOV).
 
 ## 🚀 Diferenciais Implementados
-## 🚀 Diferenciais Implementados
 
 - 🐍 Automação de Dados com Python (Item 5)
 Para testar a performance da tabela e a visualização dos gráficos com um volume real de informações, foi desenvolvido um script de automação que gera uma massa de dados aleatória e realista.
 
 **Pré-requisitos**
-**Pré-requisitos**
 * Python 3.12+
 * Biblioteca `Faker`
 
-**Como Gerar a Massa de Dados**
 **Como Gerar a Massa de Dados**
 Se desejar atualizar o arquivo `db.json` com novos registros (como CPFs, placas e valores aleatórios), siga os passos abaixo na raiz do projeto:
 
@@ -30,13 +27,13 @@ source venv/bin/activate  # No Linux/macOS
 ```
 * **♿ Acessibilidade Proativa (WCAG):** Implementação de modo de **Alto Contraste** funcional 
 
-* **Deploy da aplicação na vercel**
+**Deploy da aplicação na vercel**
 ```bash
 combust-veis-dashboard-vlab-fmiouan2j-alissonjcjks-projects.vercel.app
 ```
 * **Storybook (Documentação Visual):** Catálogo de componentes isolado, permitindo que designers e desenvolvedores visualizem e interajam com a UI sem depender do backend.
 
-* **aplicação de testes altomatizados com Jasmine**
+**aplicação de testes altomatizados com Jasmine**
 
 ## 🧰 Tecnologias Utilizadas
 
@@ -49,12 +46,10 @@ combust-veis-dashboard-vlab-fmiouan2j-alissonjcjks-projects.vercel.app
 **•** Gerenciamento de Estado: Pattern Facade com Observables (RxJS)
 
 **•** Gráficos: Chart.js
-**•** Gráficos: Chart.js
 
 **•** Mock de API: JSON Server
 
 ### 📊 Funcionalidades Implementadas
-#### 🧭 Header e Layout (Gov.br)
 #### 🧭 Header e Layout (Gov.br)
 
 **•** Barra institucional do Governo Federal
@@ -65,7 +60,6 @@ combust-veis-dashboard-vlab-fmiouan2j-alissonjcjks-projects.vercel.app
 
 **•** Breadcrumbs para navegação estrutural
 
-#### 📈 Dashboard — Visão Gerencial
 #### 📈 Dashboard — Visão Gerencial
 
 **•** KPIs
@@ -83,7 +77,6 @@ combust-veis-dashboard-vlab-fmiouan2j-alissonjcjks-projects.vercel.app
 **•** Consumo por estado (UF)
 
 #### 📋 Consulta de Abastecimentos
-#### 📋 Consulta de Abastecimentos
 
 **•** Tabela de registros contendo:
 
@@ -100,7 +93,6 @@ combust-veis-dashboard-vlab-fmiouan2j-alissonjcjks-projects.vercel.app
 - Total pago
 
 #### Filtros avançados:
-#### Filtros avançados:
 
 - Estado (UF)
 
@@ -110,7 +102,6 @@ combust-veis-dashboard-vlab-fmiouan2j-alissonjcjks-projects.vercel.app
 
 - Paginação
 
-#### 🔍 Detalhe do Registro
 #### 🔍 Detalhe do Registro
 
 **•** Informações do motorista e veículo
@@ -124,16 +115,9 @@ combust-veis-dashboard-vlab-fmiouan2j-alissonjcjks-projects.vercel.app
 - Botão “Reportar Erro” (simulação via modal / console.log)
 
 ## 🗂️ Estrutura do Projeto
-## 🗂️ Estrutura do Projeto
 
 O projeto segue uma arquitetura modular e escalável, separando claramente responsabilidades:
 
-```text
-src/app/
-├── core/        # Serviços globais, Facades e lógica de negócio
-├── shared/      # Componentes reutilizáveis (Header, Cards, Botões), Pipes e UI Kit
-├── features/    # Módulos principais (Dashboard, Consulta, Detalhes)
-└── .storybook/  # Configurações e documentação visual dos componentes
 ```text
 src/app/
 ├── core/        # Serviços globais, Facades e lógica de negócio
@@ -149,7 +133,6 @@ cd gov-combustiveis-dashboard
 
 2️⃣ Instalar dependências
 npm install ou npm install --legacy-peer-deps (caso haja incompatibilidade com o storybooking)
-npm install ou npm install --legacy-peer-deps (caso haja incompatibilidade com o storybooking)
 
 3️⃣ Executar aplicação + API mock
 npm run dev
@@ -158,12 +141,6 @@ npm run dev
 Aplicação: http://localhost:4200
 
 API Mock: http://localhost:3000
-
-4️⃣ Abrir o Storybook (Catálogo de componentes)
-npm run storybook
-
-5️⃣ Executar os Testes Unitários
-npm test
 
 4️⃣ Abrir o Storybook (Catálogo de componentes)
 npm run storybook
@@ -185,7 +162,6 @@ Navegação clara com breadcrumbs
 
 Atenção à acessibilidade e usabilidade
 
-## 👤 Autor
 ## 👤 Autor
 
 Alisson da Silva Bernardino
