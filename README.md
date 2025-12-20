@@ -4,21 +4,7 @@
 
 **•** O objetivo é fornecer aos gestores do setor de transportes uma visão gerencial clara e confiável sobre o consumo e o preço de combustíveis da frota nacional, seguindo rigorosamente o Padrão Digital de Governo (DSGOV).
 
-### ✨ Informações gerais do Projeto
-
-**•** Arquitetura Facade
-Implementação do padrão Facade para abstrair a complexidade de estado e serviços, mantendo os componentes focados exclusivamente na camada de apresentação (UI), conforme boas práticas do Angular.
-
-**•** Tailwind CSS v4
-Utilização da versão mais recente do framework para uma estilização performática, consistente e fiel ao Design System do Governo Federal.
-
-**•** Alta Performance com Vite
-Build e ambiente de desenvolvimento otimizados utilizando Vite / Esbuild, integrados ao Angular 21.
-
-**•** Visualização de Dados
-Gráficos interativos para análise de evolução de preços e consumo regional, utilizando Chart.js.
-
-#### 🚀 Diferenciais Implementados
+## 🚀 Diferenciais Implementados
 
 - 🐍 Automação de Dados com Python (Item 5)
 Para testar a performance da tabela e a visualização dos gráficos com um volume real de informações, foi desenvolvido um script de automação que gera uma massa de dados aleatória e realista.
@@ -39,15 +25,17 @@ source venv/bin/activate  # No Linux/macOS
 # pip install faker        # instalar dependências
 # python3 generate_data.py # executar o script para gerar a massa de dados
 ```
-**Altocontraste**
+* **♿ Acessibilidade Proativa (WCAG):** Implementação de modo de **Alto Contraste** funcional 
 
 **Deploy da aplicação na vercel**
 ```bash
 combust-veis-dashboard-vlab-fmiouan2j-alissonjcjks-projects.vercel.app
 ```
+* **Storybook (Documentação Visual):** Catálogo de componentes isolado, permitindo que designers e desenvolvedores visualizem e interajam com a UI sem depender do backend.
+
 **aplicação de testes altomatizados com Jasmine**
 
-### 🧰 Tecnologias Utilizadas
+## 🧰 Tecnologias Utilizadas
 
 **•** Framework: Angular 21
 
@@ -57,12 +45,12 @@ combust-veis-dashboard-vlab-fmiouan2j-alissonjcjks-projects.vercel.app
 
 **•** Gerenciamento de Estado: Pattern Facade com Observables (RxJS)
 
-**•** Gráficos: Ng2-charts / Chart.js
+**•** Gráficos: Chart.js
 
 **•** Mock de API: JSON Server
 
 ### 📊 Funcionalidades Implementadas
-##### 🧭 Header e Layout (Gov.br)
+#### 🧭 Header e Layout (Gov.br)
 
 **•** Barra institucional do Governo Federal
 
@@ -72,7 +60,7 @@ combust-veis-dashboard-vlab-fmiouan2j-alissonjcjks-projects.vercel.app
 
 **•** Breadcrumbs para navegação estrutural
 
-##### 📈 Dashboard — Visão Gerencial
+#### 📈 Dashboard — Visão Gerencial
 
 **•** KPIs
 
@@ -88,7 +76,7 @@ combust-veis-dashboard-vlab-fmiouan2j-alissonjcjks-projects.vercel.app
 
 **•** Consumo por estado (UF)
 
-##### 📋 Consulta de Abastecimentos
+#### 📋 Consulta de Abastecimentos
 
 **•** Tabela de registros contendo:
 
@@ -104,7 +92,7 @@ combust-veis-dashboard-vlab-fmiouan2j-alissonjcjks-projects.vercel.app
 
 - Total pago
 
-##### Filtros avançados:
+#### Filtros avançados:
 
 - Estado (UF)
 
@@ -114,7 +102,7 @@ combust-veis-dashboard-vlab-fmiouan2j-alissonjcjks-projects.vercel.app
 
 - Paginação
 
-##### 🔍 Detalhe do Registro
+#### 🔍 Detalhe do Registro
 
 **•** Informações do motorista e veículo
 
@@ -126,14 +114,16 @@ combust-veis-dashboard-vlab-fmiouan2j-alissonjcjks-projects.vercel.app
 
 - Botão “Reportar Erro” (simulação via modal / console.log)
 
-### 🗂️ Estrutura do Projeto
+## 🗂️ Estrutura do Projeto
 
 O projeto segue uma arquitetura modular e escalável, separando claramente responsabilidades:
 
--src/app/
--├── core/        # Serviços globais, modelos e facades (lógica de negócio)
--├── shared/      # Componentes reutilizáveis (Header, Cards, Botões – DSGOV)
--└── features/    # Módulos principais (Dashboard, Consulta, Detalhes)
+```text
+src/app/
+├── core/        # Serviços globais, Facades e lógica de negócio
+├── shared/      # Componentes reutilizáveis (Header, Cards, Botões), Pipes e UI Kit
+├── features/    # Módulos principais (Dashboard, Consulta, Detalhes)
+└── .storybook/  # Configurações e documentação visual dos componentes
 
 ####▶️ Como Executar o Projeto
 
@@ -142,7 +132,7 @@ git clone https://github.com/SEU_USUARIO/gov-combustiveis-dashboard.git
 cd gov-combustiveis-dashboard
 
 2️⃣ Instalar dependências
-npm install
+npm install ou npm install --legacy-peer-deps (caso haja incompatibilidade com o storybooking)
 
 3️⃣ Executar aplicação + API mock
 npm run dev
@@ -151,6 +141,12 @@ npm run dev
 Aplicação: http://localhost:4200
 
 API Mock: http://localhost:3000
+
+4️⃣ Abrir o Storybook (Catálogo de componentes)
+npm run storybook
+
+5️⃣ Executar os Testes Unitários
+npm test
 
 
 
@@ -166,11 +162,11 @@ Navegação clara com breadcrumbs
 
 Atenção à acessibilidade e usabilidade
 
-### 👤 Autor
+## 👤 Autor
 
 Alisson da Silva Bernardino
 Candidato à vaga de Estágio/Graduação — V-Lab
 
-### 📸 Screenshots
+## 📸 Screenshots
 
 (Imagens da aplicação em funcionamento serão adicionadas aqui)
