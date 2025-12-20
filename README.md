@@ -27,13 +27,13 @@ source venv/bin/activate  # No Linux/macOS
 ```
 * **♿ Acessibilidade Proativa (WCAG):** Implementação de modo de **Alto Contraste** funcional 
 
-**Deploy da aplicação na vercel**
+* **Deploy da aplicação na vercel**
 ```bash
 combust-veis-dashboard-vlab-fmiouan2j-alissonjcjks-projects.vercel.app
 ```
 * **Storybook (Documentação Visual):** Catálogo de componentes isolado, permitindo que designers e desenvolvedores visualizem e interajam com a UI sem depender do backend.
 
-**aplicação de testes altomatizados com Jasmine**
+* **aplicação de testes altomatizados com Jasmine**
 
 ## 🧰 Tecnologias Utilizadas
 
