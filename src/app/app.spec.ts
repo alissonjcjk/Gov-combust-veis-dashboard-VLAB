@@ -1,10 +1,18 @@
 import { TestBed } from '@angular/core/testing';
 import { App } from './app';
+import { provideRouter } from '@angular/router';
+import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 describe('App', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [App],
+      providers: [
+        provideRouter([]),
+        provideHttpClient(),
+        provideHttpClientTesting()
+      ],
     }).compileComponents();
   });
 
@@ -14,10 +22,15 @@ describe('App', () => {
     expect(app).toBeTruthy();
   });
 
-  it('should render title', async () => {
+  it('should render the layout shell', () => {
     const fixture = TestBed.createComponent(App);
-    await fixture.whenStable();
+    fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, gov-combustiveis-dashboard');
+    
+    // ou o router-outlet (que carrega as páginas) existam.
+    const header = compiled.querySelector('app-gov-header');
+    const outlet = compiled.querySelector('router-outlet');
+    
+    expect(header || outlet).toBeTruthy();
   });
 });

@@ -1,20 +1,23 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { AbastecimentoDetalhe } from './abastecimento-detalhe';
-
+import { AbastecimentoDetalheComponent } from './abastecimento-detalhe';
+import { provideRouter } from '@angular/router';
+import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 describe('AbastecimentoDetalhe', () => {
-  let component: AbastecimentoDetalhe;
-  let fixture: ComponentFixture<AbastecimentoDetalhe>;
+  let component: AbastecimentoDetalheComponent;
+  let fixture: ComponentFixture<AbastecimentoDetalheComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AbastecimentoDetalhe]
-    })
-    .compileComponents();
+      imports: [AbastecimentoDetalheComponent],
+      providers: [provideRouter([]),
+        provideHttpClient(),
+        provideHttpClientTesting()]
+    }).compileComponents();
 
-    fixture = TestBed.createComponent(AbastecimentoDetalhe);
+    fixture = TestBed.createComponent(AbastecimentoDetalheComponent);
     component = fixture.componentInstance;
-    await fixture.whenStable();
+    fixture.detectChanges();
   });
 
   it('should create', () => {

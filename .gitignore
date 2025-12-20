@@ -48,3 +48,5 @@ venv/
 env/
 __pycache__/
 *.pyc
+*storybook.log
+storybook-static
