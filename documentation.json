@@ -1,0 +1,1822 @@
+{
+    "pipes": [
+        {
+            "name": "MaskCpfPipe",
+            "id": "pipe-MaskCpfPipe-1ccf2f5a8c2b1420180f08efea25a2bf8db8c1d7fd6a4c0098d056c77928a5c11fb7e06904d1c40f9615cf0c80166e316254aa4681b3dfc9dac25210bfb5d921",
+            "file": "src/app/shared/pipes/mask-pipe.ts",
+            "type": "pipe",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "description": "",
+            "rawdescription": "\n",
+            "properties": [],
+            "methods": [
+                {
+                    "name": "transform",
+                    "args": [
+                        {
+                            "name": "value",
+                            "type": "string | null | undefined",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "string",
+                    "typeParameters": [],
+                    "line": 29,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "value",
+                            "type": "string | null | undefined",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "standalone": true,
+            "ngname": "maskCpf",
+            "sourceCode": "import { Pipe, PipeTransform } from '@angular/core';\n\n@Pipe({\n  name: 'maskPlaca',\n  standalone: true\n})\nexport class MaskPlacaPipe implements PipeTransform {\n  transform(value: string): string {\n    if (!value) return '';\n\n    // 1. Remove qualquer traço ou espaço existente e deixa em maiúsculo\n    const limpo = value.toUpperCase().replace(/[^A-Z0-9]/g, '');\n\n    // 2. Se tiver 7 caracteres (padrão Brasil), coloca o traço após as 3 letras\n    if (limpo.length === 7) {\n      return `${limpo.slice(0, 3)}-${limpo.slice(3)}`;\n    }\n\n    return value;\n  }\n}\n\n@Pipe({\n  name: 'maskCpf',\n  standalone: true\n})\nexport class MaskCpfPipe implements PipeTransform {\n\n  transform(value: string | null | undefined): string {\n    if (!value) return '';\n\n    const limpo = value.replace(/\\D/g, '');\n\n    if (limpo.length !== 11) return value;\n\n    return limpo.replace(\n      /(\\d{3})(\\d{3})(\\d{3})(\\d{2})/,\n      '$1.$2.$3-$4'\n    );\n  }\n}"
+        },
+        {
+            "name": "MaskPlacaPipe",
+            "id": "pipe-MaskPlacaPipe-1ccf2f5a8c2b1420180f08efea25a2bf8db8c1d7fd6a4c0098d056c77928a5c11fb7e06904d1c40f9615cf0c80166e316254aa4681b3dfc9dac25210bfb5d921",
+            "file": "src/app/shared/pipes/mask-pipe.ts",
+            "type": "pipe",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "description": "",
+            "rawdescription": "\n",
+            "properties": [],
+            "methods": [
+                {
+                    "name": "transform",
+                    "args": [
+                        {
+                            "name": "value",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "string",
+                    "typeParameters": [],
+                    "line": 8,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "value",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "standalone": true,
+            "ngname": "maskPlaca",
+            "sourceCode": "import { Pipe, PipeTransform } from '@angular/core';\n\n@Pipe({\n  name: 'maskPlaca',\n  standalone: true\n})\nexport class MaskPlacaPipe implements PipeTransform {\n  transform(value: string): string {\n    if (!value) return '';\n\n    // 1. Remove qualquer traço ou espaço existente e deixa em maiúsculo\n    const limpo = value.toUpperCase().replace(/[^A-Z0-9]/g, '');\n\n    // 2. Se tiver 7 caracteres (padrão Brasil), coloca o traço após as 3 letras\n    if (limpo.length === 7) {\n      return `${limpo.slice(0, 3)}-${limpo.slice(3)}`;\n    }\n\n    return value;\n  }\n}\n\n@Pipe({\n  name: 'maskCpf',\n  standalone: true\n})\nexport class MaskCpfPipe implements PipeTransform {\n\n  transform(value: string | null | undefined): string {\n    if (!value) return '';\n\n    const limpo = value.replace(/\\D/g, '');\n\n    if (limpo.length !== 11) return value;\n\n    return limpo.replace(\n      /(\\d{3})(\\d{3})(\\d{3})(\\d{2})/,\n      '$1.$2.$3-$4'\n    );\n  }\n}"
+        }
+    ],
+    "interfaces": [
+        {
+            "name": "Abastecimento",
+            "id": "interface-Abastecimento-5c560fad4d8cd9cf95a88cf2879ae6a37019132713ae8d02358475d9a4c08888d878e9366aa56ffd00484995dadf17ad7177ff70f0c10c2387ab4d0dba9fa91c",
+            "file": "src/app/core/models/abastecimento.model.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "export interface DashboardStats {\n  precoMedioNacional: number;\n  totalConsumido: number; // Sincronizado com o HTML\n  postosAtivos: number;    // Sincronizado com o HTML\n}\n\nexport interface Abastecimento {\n  id: number;\n  data: string;\n  posto: string;\n  cidade: string;\n  uf: string;\n  cpf: string;\n  combustivel: 'Gasolina' | 'Etanol' | 'Diesel';\n  valorLitro: number;\n  totalPago: number;\n  motorista: string;\n  placa: string;\n}",
+            "properties": [
+                {
+                    "name": "cidade",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 11
+                },
+                {
+                    "name": "combustivel",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "\"Gasolina\" | \"Etanol\" | \"Diesel\"",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 14
+                },
+                {
+                    "name": "cpf",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 13
+                },
+                {
+                    "name": "data",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 9
+                },
+                {
+                    "name": "id",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 8
+                },
+                {
+                    "name": "motorista",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 17
+                },
+                {
+                    "name": "placa",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 18
+                },
+                {
+                    "name": "posto",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 10
+                },
+                {
+                    "name": "totalPago",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 16
+                },
+                {
+                    "name": "uf",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 12
+                },
+                {
+                    "name": "valorLitro",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 15
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 172,
+            "methods": [],
+            "extends": []
+        },
+        {
+            "name": "DashboardStats",
+            "id": "interface-DashboardStats-5c560fad4d8cd9cf95a88cf2879ae6a37019132713ae8d02358475d9a4c08888d878e9366aa56ffd00484995dadf17ad7177ff70f0c10c2387ab4d0dba9fa91c",
+            "file": "src/app/core/models/abastecimento.model.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "export interface DashboardStats {\n  precoMedioNacional: number;\n  totalConsumido: number; // Sincronizado com o HTML\n  postosAtivos: number;    // Sincronizado com o HTML\n}\n\nexport interface Abastecimento {\n  id: number;\n  data: string;\n  posto: string;\n  cidade: string;\n  uf: string;\n  cpf: string;\n  combustivel: 'Gasolina' | 'Etanol' | 'Diesel';\n  valorLitro: number;\n  totalPago: number;\n  motorista: string;\n  placa: string;\n}",
+            "properties": [
+                {
+                    "name": "postosAtivos",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 4
+                },
+                {
+                    "name": "precoMedioNacional",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 2
+                },
+                {
+                    "name": "totalConsumido",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 3
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 172,
+            "methods": [],
+            "extends": []
+        },
+        {
+            "name": "User",
+            "id": "interface-User-d4821beac0e4a852e513391b7470981c4353fdd95a18628bb68136c8695b489ee15b926e2e5031bc26cf30e1508e0a362c3ee13a06734702b4d15af140e485d5",
+            "file": "src/stories/user.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "export interface User {\n  name: string;\n}\n",
+            "properties": [
+                {
+                    "name": "name",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 2
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 172,
+            "methods": [],
+            "extends": []
+        }
+    ],
+    "injectables": [
+        {
+            "name": "AbastecimentoFacade",
+            "id": "injectable-AbastecimentoFacade-03c9b06cb2f09677f4a08fc17ae1ee0f7e552e1efa61f382d3d1736f4541933f336b06f5f4daffd0728dc547f05926be4a5b5a5eb050aa7a8650a63784b41f30",
+            "file": "src/app/core/facades/abastecimento.facade.ts",
+            "properties": [
+                {
+                    "name": "_abastecimentos$",
+                    "defaultValue": "new BehaviorSubject<Abastecimento[]>([])",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "unknown",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 12,
+                    "modifierKind": [
+                        123
+                    ]
+                },
+                {
+                    "name": "_paginaAtual$",
+                    "defaultValue": "new BehaviorSubject<number>(1)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "unknown",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 14,
+                    "modifierKind": [
+                        123
+                    ]
+                },
+                {
+                    "name": "_stats$",
+                    "defaultValue": "new BehaviorSubject<DashboardStats | null>(null)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "unknown",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 13,
+                    "modifierKind": [
+                        123
+                    ]
+                },
+                {
+                    "name": "paginaAtual$",
+                    "defaultValue": "this._paginaAtual$.asObservable()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "unknown",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 15,
+                    "modifierKind": [
+                        125
+                    ]
+                }
+            ],
+            "methods": [
+                {
+                    "name": "carregarAbastecimentos",
+                    "args": [
+                        {
+                            "name": "pagina",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "defaultValue": "1"
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 24,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "pagina",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "defaultValue": "1",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "carregarDadosDash",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 36,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "description": "",
+            "rawdescription": "\n",
+            "sourceCode": "import { Injectable } from '@angular/core';\nimport { BehaviorSubject, Observable } from 'rxjs';\nimport { Abastecimento, DashboardStats } from '../models/abastecimento.model';\nimport { AbastecimentoService } from '../services/abastecimento.service';\n\n\n//Esse arquivo isola o componente do serviço\n@Injectable({\n  providedIn: 'root'\n})\nexport class AbastecimentoFacade {\n  private _abastecimentos$ = new BehaviorSubject<Abastecimento[]>([]);\n  private _stats$ = new BehaviorSubject<DashboardStats | null>(null);\n  private _paginaAtual$ = new BehaviorSubject<number>(1);\n  public paginaAtual$ = this._paginaAtual$.asObservable();\n\n  constructor(private service: AbastecimentoService) {}\n\n  // Getters para os componentes assinarem\n  get abastecimentos$(): Observable<Abastecimento[]> {\n    return this._abastecimentos$.asObservable();\n  }\n\n  carregarAbastecimentos(pagina: number = 1): void {\n    this._paginaAtual$.next(pagina);\n    this.service.getAbastecimentos(pagina, 5).subscribe(dados => {\n      this._abastecimentos$.next(dados);\n    });\n  }\n\n  get stats$(): Observable<DashboardStats | null> {\n    return this._stats$.asObservable();\n  }\n\n  // Métodos de ação\n  carregarDadosDash(): void {\n    this.service.getAbastecimentos().subscribe(dados => this._abastecimentos$.next(dados));\n    this.service.getStats().subscribe(stats => this._stats$.next(stats));\n  }\n}",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "service",
+                        "type": "AbastecimentoService",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 15,
+                "jsdoctags": [
+                    {
+                        "name": "service",
+                        "type": "AbastecimentoService",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "accessors": {
+                "abastecimentos$": {
+                    "name": "abastecimentos$",
+                    "getSignature": {
+                        "name": "abastecimentos$",
+                        "type": "unknown",
+                        "returnType": "Observable<Abastecimento[]>",
+                        "line": 20
+                    }
+                },
+                "stats$": {
+                    "name": "stats$",
+                    "getSignature": {
+                        "name": "stats$",
+                        "type": "unknown",
+                        "returnType": "Observable<DashboardStats | null>",
+                        "line": 31
+                    }
+                }
+            },
+            "extends": [],
+            "type": "injectable"
+        },
+        {
+            "name": "AbastecimentoService",
+            "id": "injectable-AbastecimentoService-a72b19447ba3d6993920ed595c48a3d26df5c3b15a5c1b91eaac99f91aff2752b550b65b64eafecd0ba43574928be4697e54459345494fa9748b723a8c97d4a6",
+            "file": "src/app/core/services/abastecimento.service.ts",
+            "properties": [
+                {
+                    "name": "API",
+                    "defaultValue": "'http://localhost:3000'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 12,
+                    "modifierKind": [
+                        123,
+                        148
+                    ]
+                }
+            ],
+            "methods": [
+                {
+                    "name": "getAbastecimentos",
+                    "args": [
+                        {
+                            "name": "page",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "defaultValue": "1"
+                        },
+                        {
+                            "name": "limit",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "defaultValue": "5"
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "Observable<Abastecimento[]>",
+                    "typeParameters": [],
+                    "line": 16,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "page",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "defaultValue": "1",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "limit",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "defaultValue": "5",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "getHistorico",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "Observable<any[]>",
+                    "typeParameters": [],
+                    "line": 24,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "getStats",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "Observable<DashboardStats>",
+                    "typeParameters": [],
+                    "line": 20,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "description": "",
+            "rawdescription": "\n",
+            "sourceCode": "import { Injectable } from '@angular/core';\nimport { HttpClient } from '@angular/common/http';\nimport { Observable } from 'rxjs';\nimport { Abastecimento, DashboardStats } from '../models/abastecimento.model';\n\n@Injectable({\n  providedIn: 'root'\n})\n\n//httpClient serve para buscar os dados do meu json server\nexport class AbastecimentoService {\n  private readonly API = 'http://localhost:3000';\n\n  constructor(private http: HttpClient) {}\n\n  getAbastecimentos(page: number = 1, limit: number = 5): Observable<Abastecimento[]> {\n    return this.http.get<Abastecimento[]>(`${this.API}/abastecimentos?_page=${page}&_limit=${limit}`);\n  }\n\n  getStats(): Observable<DashboardStats> {\n    return this.http.get<DashboardStats>(`${this.API}/kpis`);\n  }\n\n  getHistorico(): Observable<any[]> {\n  return this.http.get<any[]>(`${this.API}/historicoPrecos`);\n}\n}",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "http",
+                        "type": "HttpClient",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 12,
+                "jsdoctags": [
+                    {
+                        "name": "http",
+                        "type": "HttpClient",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "extends": [],
+            "type": "injectable"
+        },
+        {
+            "name": "AccessibilityService",
+            "id": "injectable-AccessibilityService-3a079ffdb1bc584e7a85f3dc2ab03aff2aba1d75d3382b1c312c85446c9e9862758b8ef3d03837abadbd2a71cdbec1541a23a4ba7d8b1507c0b113050f3ff0c6",
+            "file": "src/app/core/services/accessibility.service.ts",
+            "properties": [
+                {
+                    "name": "isHighContrast",
+                    "defaultValue": "signal(false)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "unknown",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 6
+                }
+            ],
+            "methods": [
+                {
+                    "name": "toggleHighContrast",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 8,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "description": "",
+            "rawdescription": "\n",
+            "sourceCode": "import { Injectable, signal } from '@angular/core';\n\n@Injectable({ providedIn: 'root' })\nexport class AccessibilityService {\n  // Usamos um Signal para rastrear o estado (Angular 17+)\n  isHighContrast = signal(false);\n\n  toggleHighContrast() {\n    this.isHighContrast.set(!this.isHighContrast());\n    \n    // Manipula a classe diretamente no body para afetar o CSS global\n    if (this.isHighContrast()) {\n      document.body.classList.add('high-contrast');\n    } else {\n      document.body.classList.remove('high-contrast');\n    }\n  }\n}",
+            "extends": [],
+            "type": "injectable"
+        }
+    ],
+    "guards": [],
+    "interceptors": [],
+    "classes": [],
+    "directives": [],
+    "components": [
+        {
+            "name": "AbastecimentoDetalheComponent",
+            "id": "component-AbastecimentoDetalheComponent-9bb653a9e3c2e833bc371fd7a057ca98866666a0e4fb7cd0e27fb952f92e0a9c9ffd9235444d8dae1ac76bb8b4f2776857db9e468a44c2185c65e4d6d90ef657",
+            "file": "src/app/features/consulta/abastecimento-detalhe/abastecimento-detalhe.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-abastecimento-detalhe",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./abastecimento-detalhe.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "abastecimento$",
+                    "defaultValue": "this.route.paramMap.pipe(\n    map(params => params.get('id')),\n    switchMap(id => this.facade.abastecimentos$.pipe(\n      // 1. Filtra para ignorar a lista vazia inicial do BehaviorSubject\n      filter(lista => lista && lista.length > 0),\n      // 2. Procura usando == (permite comparar \"1\" com 1)\n      map(lista => lista.find(item => item.id == Number(id))),\n      tap(item => console.log('Registro localizado:', item))\n    ))\n  )",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "unknown",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 20
+                },
+                {
+                    "name": "facade",
+                    "defaultValue": "inject(AbastecimentoFacade)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "unknown",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 18,
+                    "modifierKind": [
+                        123
+                    ]
+                },
+                {
+                    "name": "route",
+                    "defaultValue": "inject(ActivatedRoute)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "unknown",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 17,
+                    "modifierKind": [
+                        123
+                    ]
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 50,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "reportarErro",
+                    "args": [
+                        {
+                            "name": "item",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 31,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "item",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "RouterLink"
+                },
+                {
+                    "name": "MaskPlacaPipe",
+                    "type": "pipe"
+                },
+                {
+                    "name": "MaskCpfPipe",
+                    "type": "pipe"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, OnInit, inject } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { ActivatedRoute, RouterLink } from '@angular/router';\nimport { AbastecimentoFacade } from '../../../core/facades/abastecimento.facade';\nimport { MaskPlacaPipe, MaskCpfPipe} from '../../../shared/pipes/mask-pipe';\nimport { map, switchMap, filter, tap } from 'rxjs'; // Adicione filter e tap\n\n// ... (mantenha os imports)\n\n@Component({\n  selector: 'app-abastecimento-detalhe',\n  standalone: true,\n  imports: [CommonModule, RouterLink, MaskPlacaPipe, MaskCpfPipe],\n  templateUrl: './abastecimento-detalhe.html'\n})\nexport class AbastecimentoDetalheComponent implements OnInit {\n  private route = inject(ActivatedRoute);\n  private facade = inject(AbastecimentoFacade);\n\n  abastecimento$ = this.route.paramMap.pipe(\n    map(params => params.get('id')),\n    switchMap(id => this.facade.abastecimentos$.pipe(\n      // 1. Filtra para ignorar a lista vazia inicial do BehaviorSubject\n      filter(lista => lista && lista.length > 0),\n      // 2. Procura usando == (permite comparar \"1\" com 1)\n      map(lista => lista.find(item => item.id == Number(id))),\n      tap(item => console.log('Registro localizado:', item))\n    ))\n  );\n\n  reportarErro(item: any): void {\n    // Simula a abertura de um modal simples para capturar a correção\n    const correcao = prompt(`Descreva o erro encontrado no abastecimento #${item.id}:`);\n  \n    if (correcao !== null && correcao.trim() !== '') {\n      console.log('🚀 Enviando correção para o servidor...', {\n        id_registro: item.id,\n        motorista: item.motorista,\n        descricao_erro: correcao,\n        data_reporte: new Date().toISOString()\n      });\n  \n      // Feedback visual para o usuário\n      alert('Obrigado! Sua solicitação de correção foi enviada para análise da equipe técnica.');\n    } else if (correcao === '') {\n      alert('Por favor, descreva o erro para que possamos corrigi-lo.');\n    }\n  }\n\n  ngOnInit(): void {\n    // Dispara a carga caso o usuário entre direto pelo link da URL\n    this.facade.carregarDadosDash();\n  }\n}",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<div class=\"py-8 max-w-3xl mx-auto px-4\" *ngIf=\"abastecimento$ | async as item; else loading\">\n  <div class=\"flex items-center gap-4 mb-6\">\n    <button routerLink=\"/consulta\" class=\"text-blue-600 hover:underline flex items-center gap-2 font-bold\">\n      ← Voltar para a lista\n    </button>\n  </div>\n\n  <div class=\"bg-white rounded-lg shadow-lg border border-gray-200 overflow-hidden\">\n    <div class=\"bg-gov-blue-primary p-6\">\n      <h2 class=\"text-white text-xl font-bold uppercase\">Detalhes do Abastecimento #{{ item.id }}</h2>\n    </div>\n    \n    <div class=\"p-8 grid grid-cols-1 md:grid-cols-2 gap-y-6 gap-x-12\">\n      <div class=\"border-b pb-2\">\n        <p class=\"text-xs text-gray-500 font-bold uppercase\">Motorista</p>\n        <p class=\"text-lg text-gray-900 font-medium\">{{ item.motorista }}</p>\n      </div>\n\n      <div class=\"border-b pb-2\">\n        <p class=\"text-xs text-gray-500 font-bold uppercase\">Placa do Veículo</p>\n        <p class=\"text-lg text-gray-900 font-mono\">{{ item.placa | maskPlaca }}</p>\n      </div>\n       <div class=\"border-b pb-2\">\n        <p class=\"text-xs text-gray-500 font-bold uppercase\">CPF do motorista</p>\n        <p class=\"text-lg text-gray-900 font-mono\">{{ item.cpf | maskCpf }}</p>\n      </div>\n\n      <div class=\"border-b pb-2\">\n        <p class=\"text-xs text-gray-500 font-bold uppercase\">Posto / Local</p>\n        <p class=\"text-lg text-gray-900\">{{ item.posto }} - {{ item.cidade }}/{{ item.uf }}</p>\n      </div>\n\n      <div class=\"border-b pb-2\">\n        <p class=\"text-xs text-gray-500 font-bold uppercase\">Combustível</p>\n        <p class=\"text-lg text-gray-900\">{{ item.combustivel }}</p>\n      </div>\n\n      <div class=\"border-b pb-2\">\n        <p class=\"text-xs text-gray-500 font-bold uppercase\">Valor Total</p>\n        <p class=\"text-2xl text-gov-blue-primary font-bold\">{{ item.totalPago | currency:'BRL' }}</p>\n      </div>\n\n      <div class=\"px-8 pb-8 flex justify-end border-t border-gray-100 pt-6\">\n        <button\n          (click)=\"reportarErro(item)\"\n          class=\"flex items-center gap-2 px-6 py-2.5 bg-blue-600 text-white text-sm font-medium rounded-md shadow-md hover:bg-blue-700 active:bg-blue-800 transition-all uppercase tracking-wider\"\n        >\n          <span class=\"text-lg\">⚠️</span> Reportar erro ou inconsistência\n        </button>\n      </div>\n      \n    </div>\n  </div>\n</div>\n\n<ng-template #loading>\n  <div class=\"p-20 text-center text-gray-500\">Buscando detalhes do registro...</div>\n</ng-template>"
+        },
+        {
+            "name": "App",
+            "id": "component-App-28a19a6e5708c83cb6573147ccb7205f312f2205c4fa57592aab86aba3cd1c0df976c4eb201d830ba01b8c9a012f43f3842083a03175af93c611255da1c719e3",
+            "file": "src/app/app.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-root",
+            "styleUrls": [],
+            "styles": [],
+            "template": "<app-gov-header></app-gov-header>\n<main class=\"container mx-auto p-4\">\n  <router-outlet></router-outlet>\n</main>\n",
+            "templateUrl": [],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "RouterOutlet"
+                },
+                {
+                    "name": "GovHeader"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component } from '@angular/core';\nimport { RouterOutlet } from '@angular/router';\nimport { GovHeader } from './shared/components/gov-header/gov-header';\n\n@Component({\n  selector: 'app-root',\n  standalone: true,\n  imports: [RouterOutlet, GovHeader], // Importe aqui\n  template: `\n    <app-gov-header></app-gov-header>\n    <main class=\"container mx-auto p-4\">\n      <router-outlet></router-outlet>\n    </main>\n  `,\n})\nexport class App {}",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": []
+        },
+        {
+            "name": "ButtonComponent",
+            "id": "component-ButtonComponent-d7bf0323e6da130e2609e2af0117b4a8d7cd874132206af50bf43dfc37044485fe50f2867ea76525730dd195b9b95a43802a12dadc6ad5cd7bf2faa07f19f0da",
+            "file": "src/stories/button.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "storybook-button",
+            "styleUrls": [
+                "./button.css"
+            ],
+            "styles": [],
+            "template": " <button  type=\"button\"\n  (click)=\"onClick.emit($event)\"\n  [ngClass]=\"classes\"\n  [ngStyle]=\"{ 'background-color': backgroundColor }\"\n>\n  {{ label }}\n</button>",
+            "templateUrl": [],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "backgroundColor",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nWhat background color to use",
+                    "description": "<p>What background color to use</p>\n",
+                    "line": 25,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "label",
+                    "defaultValue": "'Button'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "pos": 760,
+                            "end": 773,
+                            "kind": 328,
+                            "id": 0,
+                            "flags": 16842752,
+                            "modifierFlagsCache": 0,
+                            "transformFlags": 0,
+                            "tagName": {
+                                "pos": 761,
+                                "end": 769,
+                                "kind": 80,
+                                "id": 0,
+                                "flags": 16842752,
+                                "transformFlags": 0,
+                                "escapedText": "required"
+                            },
+                            "comment": ""
+                        }
+                    ],
+                    "rawdescription": "\n\nButton contents\n\n",
+                    "description": "<p>Button contents</p>\n",
+                    "line": 37,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "primary",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nIs this the principal call to action on the page?",
+                    "description": "<p>Is this the principal call to action on the page?</p>\n",
+                    "line": 21,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "size",
+                    "defaultValue": "'medium'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nHow large should the button be?",
+                    "description": "<p>How large should the button be?</p>\n",
+                    "line": 29,
+                    "type": "\"small\" | \"medium\" | \"large\"",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "onClick",
+                    "defaultValue": "new EventEmitter<Event>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nOptional click handler",
+                    "description": "<p>Optional click handler</p>\n",
+                    "line": 41,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { Component, Input, Output, EventEmitter } from '@angular/core';\n\n@Component({\n  selector: 'storybook-button',\n  standalone: true,\n  imports: [CommonModule],\n  template: ` <button\n  type=\"button\"\n  (click)=\"onClick.emit($event)\"\n  [ngClass]=\"classes\"\n  [ngStyle]=\"{ 'background-color': backgroundColor }\"\n>\n  {{ label }}\n</button>`,\n  styleUrls: ['./button.css'],\n})\nexport class ButtonComponent {\n  /** Is this the principal call to action on the page? */\n  @Input()\n  primary = false;\n\n  /** What background color to use */\n  @Input()\n  backgroundColor?: string;\n\n  /** How large should the button be? */\n  @Input()\n  size: 'small' | 'medium' | 'large' = 'medium';\n\n  /**\n   * Button contents\n   *\n   * @required\n   */\n  @Input()\n  label = 'Button';\n\n  /** Optional click handler */\n  @Output()\n  onClick = new EventEmitter<Event>();\n\n  public get classes(): string[] {\n    const mode = this.primary ? 'storybook-button--primary' : 'storybook-button--secondary';\n\n    return ['storybook-button', `storybook-button--${this.size}`, mode];\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ".storybook-button {\n  display: inline-block;\n  cursor: pointer;\n  border: 0;\n  border-radius: 3em;\n  font-weight: 700;\n  line-height: 1;\n  font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;\n}\n.storybook-button--primary {\n  background-color: #555ab9;\n  color: white;\n}\n.storybook-button--secondary {\n  box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset;\n  background-color: transparent;\n  color: #333;\n}\n.storybook-button--small {\n  padding: 10px 16px;\n  font-size: 12px;\n}\n.storybook-button--medium {\n  padding: 11px 20px;\n  font-size: 14px;\n}\n.storybook-button--large {\n  padding: 12px 24px;\n  font-size: 16px;\n}\n",
+                    "styleUrl": "./button.css"
+                }
+            ],
+            "stylesData": "",
+            "extends": [],
+            "accessors": {
+                "classes": {
+                    "name": "classes",
+                    "getSignature": {
+                        "name": "classes",
+                        "type": "[]",
+                        "returnType": "string[]",
+                        "line": 43
+                    }
+                }
+            }
+        },
+        {
+            "name": "ConsultaListaComponent",
+            "id": "component-ConsultaListaComponent-acf5b776ad6b5d6ba821232f52c9043c8ded1478d2889476375c6887c3edc5ddacff3599c8efc676f08e37fcdff7d28fc9167085357e98d48259447249dd0718",
+            "file": "src/app/features/consulta/consulta-lista/consulta-lista.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-consulta-lista",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./consulta-lista.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "abastecimentosFiltrados$",
+                    "defaultValue": "combineLatest([\n    this.facade.abastecimentos$,\n    this.ufControl.valueChanges.pipe(startWith('')),\n    this.combustivelControl.valueChanges.pipe(startWith('')),\n    this.dataInicioControl.valueChanges.pipe(startWith('')),\n    this.dataFimControl.valueChanges.pipe(startWith('')),\n    this.paginaAtual$ // Adicionamos a página ao fluxo\n  ]).pipe(\n    map(([lista, uf, combustivel, dataInicio, dataFim, pagina]) => {\n      // 1. Primeiro filtramos a lista completa\n      const filtrados = lista.filter(item => {\n        const filtroUF = !uf || item.uf === uf;\n        const filtroCombustivel = !combustivel || item.combustivel === combustivel;\n        \n        const dataItem = new Date(item.data);\n        const inicio = dataInicio ? new Date(dataInicio) : null;\n        const fim = dataFim ? new Date(dataFim) : null;\n        const filtroData = (!inicio || dataItem >= inicio) && (!fim || dataItem <= fim);\n\n        return filtroUF && filtroCombustivel && filtroData;\n      });\n\n      // 2. Guardamos o total para a interface\n      this.totalItens = filtrados.length;\n\n      // 3. Aplicamos a paginação (fatiamos o array)\n      const inicioIndice = (pagina - 1) * this.itensPorPagina;\n      const fimIndice = inicioIndice + this.itensPorPagina;\n      \n      return filtrados.slice(inicioIndice, fimIndice);\n    })\n  )",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "unknown",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 35
+                },
+                {
+                    "name": "combustivelControl",
+                    "defaultValue": "new FormControl('')",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "unknown",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 29
+                },
+                {
+                    "name": "dataFimControl",
+                    "defaultValue": "new FormControl('')",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "unknown",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 31
+                },
+                {
+                    "name": "dataInicioControl",
+                    "defaultValue": "new FormControl('')",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "unknown",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 30
+                },
+                {
+                    "name": "facade",
+                    "defaultValue": "inject(AbastecimentoFacade)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "unknown",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 20,
+                    "modifierKind": [
+                        123
+                    ]
+                },
+                {
+                    "name": "itensPorPagina",
+                    "defaultValue": "5",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 23
+                },
+                {
+                    "name": "paginaAtual$",
+                    "defaultValue": "new BehaviorSubject<number>(1)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "unknown",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 22,
+                    "modifierKind": [
+                        123
+                    ]
+                },
+                {
+                    "name": "searchControl",
+                    "defaultValue": "new FormControl('', { nonNullable: true })",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "unknown",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 26
+                },
+                {
+                    "name": "totalItens",
+                    "defaultValue": "0",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 24
+                },
+                {
+                    "name": "ufControl",
+                    "defaultValue": "new FormControl('')",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "unknown",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 28
+                },
+                {
+                    "name": "ufs",
+                    "defaultValue": "['AC','AL','AP','AM','BA','CE','DF','ES','GO','MA','MT','MS','MG','PA','PB','PR','PE','PI','RJ','RN','RS','RO','RR','SC','SP','SE','TO']",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "[]",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 33
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "mudarPagina",
+                    "args": [
+                        {
+                            "name": "direcao",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 69,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "direcao",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 83,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "ReactiveFormsModule",
+                    "type": "module"
+                },
+                {
+                    "name": "RouterLink"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, OnInit, inject } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { FormControl, ReactiveFormsModule } from '@angular/forms';\nimport { RouterLink } from '@angular/router';\nimport { AbastecimentoFacade } from '../../../core/facades/abastecimento.facade';\nimport { Abastecimento } from '../../../core/models/abastecimento.model'; // Importe o model\nimport { map, combineLatest, startWith, Observable } from 'rxjs';\nimport { BehaviorSubject } from 'rxjs';\n\n\n\n@Component({\n  selector: 'app-consulta-lista',\n  standalone: true,\n  imports: [CommonModule, ReactiveFormsModule, RouterLink],\n  templateUrl: './consulta-lista.html',\n})\n\nexport class ConsultaListaComponent implements OnInit {\n  private facade = inject(AbastecimentoFacade);\n\n  private paginaAtual$ = new BehaviorSubject<number>(1);\n  itensPorPagina = 5; \n  totalItens = 0;\n  \n  searchControl = new FormControl('', { nonNullable: true }); // Garante que nunca seja null\n\n  ufControl = new FormControl('');\n  combustivelControl = new FormControl('');\n  dataInicioControl = new FormControl('');\n  dataFimControl = new FormControl('');\n\n  ufs = ['AC','AL','AP','AM','BA','CE','DF','ES','GO','MA','MT','MS','MG','PA','PB','PR','PE','PI','RJ','RN','RS','RO','RR','SC','SP','SE','TO'];\n  // Adicionamos a tipagem explícita : Observable<Abastecimento[]>\n  abastecimentosFiltrados$ = combineLatest([\n    this.facade.abastecimentos$,\n    this.ufControl.valueChanges.pipe(startWith('')),\n    this.combustivelControl.valueChanges.pipe(startWith('')),\n    this.dataInicioControl.valueChanges.pipe(startWith('')),\n    this.dataFimControl.valueChanges.pipe(startWith('')),\n    this.paginaAtual$ // Adicionamos a página ao fluxo\n  ]).pipe(\n    map(([lista, uf, combustivel, dataInicio, dataFim, pagina]) => {\n      // 1. Primeiro filtramos a lista completa\n      const filtrados = lista.filter(item => {\n        const filtroUF = !uf || item.uf === uf;\n        const filtroCombustivel = !combustivel || item.combustivel === combustivel;\n        \n        const dataItem = new Date(item.data);\n        const inicio = dataInicio ? new Date(dataInicio) : null;\n        const fim = dataFim ? new Date(dataFim) : null;\n        const filtroData = (!inicio || dataItem >= inicio) && (!fim || dataItem <= fim);\n\n        return filtroUF && filtroCombustivel && filtroData;\n      });\n\n      // 2. Guardamos o total para a interface\n      this.totalItens = filtrados.length;\n\n      // 3. Aplicamos a paginação (fatiamos o array)\n      const inicioIndice = (pagina - 1) * this.itensPorPagina;\n      const fimIndice = inicioIndice + this.itensPorPagina;\n      \n      return filtrados.slice(inicioIndice, fimIndice);\n    })\n  );\n\n  // Métodos de navegação\n  mudarPagina(direcao: number) {\n    const novaPagina = this.paginaAtual$.value + direcao;\n    if (novaPagina > 0 && novaPagina <= Math.ceil(this.totalItens / this.itensPorPagina)) {\n      this.paginaAtual$.next(novaPagina);\n    }\n  }\n\n  get paginaAtual() {\n    return this.paginaAtual$.value;\n  }\n\n\n\n\n  ngOnInit(): void {\n    this.facade.carregarDadosDash();\n  }\n}",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "implements": [
+                "OnInit"
+            ],
+            "accessors": {
+                "paginaAtual": {
+                    "name": "paginaAtual",
+                    "getSignature": {
+                        "name": "paginaAtual",
+                        "type": "",
+                        "returnType": "",
+                        "line": 76
+                    }
+                }
+            },
+            "templateData": "<div class=\"py-6 animate-fade-in\">\n    <nav class=\"br-breadcrumb mb-6\" aria-label=\"Breadcrumbs\">\n      <ul class=\"crumb-list\">\n        <li class=\"crumb\">\n          <a [routerLink]=\"['/']\" class=\"home-link\">\n            <svg width=\"20\" height=\"23\" viewBox=\"0 0 20 23\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n              <path d=\"M9.75 8.65625C9.8125 8.59375 9.90625 8.5625 10 8.5625C10.0625 8.5625 10.1562 8.59375 10.2188 8.65625L16 13.375V18.5C16 18.7812 15.75 19 15.5 19H11.9688C11.7188 19 11.4688 18.7812 11.4688 18.5V15.5C11.4688 15.25 11.25 15 10.9688 15H8.96875C8.71875 15 8.46875 15.25 8.46875 15.5V18.5C8.46875 18.7812 8.25 19 8 19H4.5C4.21875 19 4 18.7812 4 18.5V13.4062L9.75 8.65625ZM18.8438 11.875C18.9375 11.9375 19 12.0625 19 12.1562C19 12.25 18.9688 12.3438 18.9062 12.4062L18.0938 13.375C18.0312 13.4688 17.9375 13.5 17.8125 13.5C17.7188 13.5 17.625 13.4688 17.5625 13.4062L10.2188 7.375C10.1562 7.3125 10.0625 7.28125 10 7.28125C9.90625 7.28125 9.8125 7.3125 9.75 7.375L2.40625 13.4062C2.34375 13.4688 2.25 13.5 2.15625 13.5C2.03125 13.5 1.9375 13.4688 1.875 13.375L1.0625 12.4062C1.03125 12.3438 0.96875 12.25 0.96875 12.1562C0.96875 12.0625 1.03125 11.9375 1.125 11.875L9.03125 5.34375C9.28125 5.15625 9.625 5.03125 10 5.03125C10.3438 5.03125 10.6875 5.15625 10.9375 5.34375L13.75 7.65625V5.40625C13.75 5.1875 13.9062 5.03125 14.125 5.03125H15.875C16.0625 5.03125 16.25 5.1875 16.25 5.40625V9.71875L18.8438 11.875Z\" fill=\"#1351B4\"/>\n            </svg>\n          </a>\n        </li>\n        <li class=\"crumb\">\n          <span class=\"chevron\">></span>\n          <a href=\"javascript:void(0)\">Dashboard</a>\n        </li>\n        <li class=\"crumb active\">\n          <span class=\"chevron\">></span>\n          <span>Consultar detalhes</span>\n        </li>\n      </ul>\n    </nav>\n  <h2 class=\"text-2xl font-bold text-gov-blue-primary mb-6 uppercase tracking-wider\">\n    Consulta de Abastecimentos\n  </h2>\n\n  <div class=\"bg-gray-50 p-6 rounded-t-lg border border-gray-200 border-b-0\">\n    <form class=\"grid grid-cols-1 md:grid-cols-3 gap-4\">\n\n      <!-- UF -->\n      <div>\n        <label class=\"block text-sm font-bold text-gray-700 mb-1\">\n          Estado (UF)\n        </label>\n        <select\n          [formControl]=\"ufControl\"\n          class=\"w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 shadow-sm\"\n        >\n          <option value=\"\">Todos</option>\n          <option *ngFor=\"let uf of ufs\" [value]=\"uf\">\n            {{ uf }}\n          </option>\n        </select>\n      </div>\n\n      <!-- Combustível -->\n      <div>\n        <label class=\"block text-sm font-bold text-gray-700 mb-1\">\n          Combustível\n        </label>\n        <select\n          [formControl]=\"combustivelControl\"\n          class=\"w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 shadow-sm\"\n        >\n          <option value=\"\">Todos</option>\n          <option value=\"Gasolina\">Gasolina</option>\n          <option value=\"Etanol\">Etanol</option>\n          <option value=\"Diesel\">Diesel</option>\n        </select>\n      </div>\n\n      <!-- Período -->\n      <div>\n        <label class=\"block text-sm font-bold text-gray-700 mb-1\">\n          Período\n        </label>\n        <div class=\"flex gap-2\">\n          <input\n            type=\"date\"\n            [formControl]=\"dataInicioControl\"\n            class=\"w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 shadow-sm\"\n          />\n          <input\n            type=\"date\"\n            [formControl]=\"dataFimControl\"\n            class=\"w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 shadow-sm\"\n          />\n        </div>\n      </div>\n\n    </form>\n  </div>\n\n\n\n  <div class=\"overflow-x-auto bg-white rounded-b-lg shadow-sm border border-gray-200\">\n    <table class=\"min-w-full divide-y divide-gray-200\">\n      <thead class=\"bg-gray-50\">\n        <tr>\n          <th class=\"px-6 py-3 text-left text-xs font-bold text-gray-500 uppercase\">Data</th>\n          <th class=\"px-6 py-3 text-left text-xs font-bold text-gray-500 uppercase\">Posto</th>\n          <th class=\"px-6 py-3 text-left text-xs font-bold text-gray-500 uppercase\">Cidade/UF</th>\n          <th class=\"px-6 py-3 text-left text-xs font-bold text-gray-500 uppercase\">Tipo de Combustível</th>\n          <th class=\"px-6 py-3 text-left text-xs font-bold text-gray-500 uppercase\">Valor litro</th>\n          <th class=\"px-6 py-3 text-left text-xs font-bold text-gray-500 uppercase text-right\">Total pago (R$)</th>\n          <th class=\"px-6 py-3 text-center text-xs font-bold text-gray-500 uppercase\">Ações</th>\n        </tr>\n      </thead>\n      \n      <tbody class=\"divide-y divide-gray-200 bg-white\" *ngIf=\"abastecimentosFiltrados$ | async as lista\">\n        <tr *ngFor=\"let item of lista\" class=\"hover:bg-blue-50 transition-colors\">\n          <td class=\"px-6 py-4 whitespace-nowrap text-sm text-gray-700\">\n            {{ item.data | date:'dd/MM/yyyy' }}\n          </td>\n          <td class=\"px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900\">\n            {{ item.posto }}\n          </td>\n          <td class=\"px-6 py-4 whitespace-nowrap text-sm text-gray-600\">\n            {{ item.cidade }}\n          </td>\n          <td class=\"px-6 py-4 whitespace-nowrap text-sm text-gray-600\">\n            <span class=\"px-2 py-1 rounded-full text-xs font-bold\" \n                  [ngClass]=\"{\n                    'bg-green-100 text-green-800': item.combustivel === 'Etanol', \n                    'bg-blue-100 text-blue-800': item.combustivel === 'Gasolina',\n                    'bg-amber-100 text-amber-800': item.combustivel === 'Diesel'\n                  }\">\n              {{ item.combustivel }}\n            </span>\n          </td>\n          <td class=\"px-6 py-4 whitespace-nowrap text-sm text-gray-600\">\n            {{ item.valorLitro }}\n          </td>\n          <td class=\"px-6 py-4 whitespace-nowrap text-sm font-bold text-gov-blue-primary text-right\">\n            {{ item.totalPago | currency:'BRL' }}\n          </td>\n          <td class=\"px-6 py-4 whitespace-nowrap text-sm text-center\">\n            <button [routerLink]=\"['/consulta', item.id]\"\n                     class=\"text-gov-blue-primary hover:underline font-bold text-xs\">\n                     DETALHES \n            </button>\n          </td>\n        </tr>\n\n        <tr *ngIf=\"lista.length === 0\">\n          <td colspan=\"6\" class=\"px-6 py-10 text-center text-gray-500 italic\">\n            Nenhum abastecimento encontrado para esta busca.\n          </td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n\n  <div class=\"mt-6 flex items-center justify-between bg-white px-4 py-3 border border-gray-200 rounded-lg shadow-sm\">\n    <div class=\"flex flex-1 justify-between items-center\">\n      <span class=\"text-sm text-gray-700\">\n        Mostrando registros de <b>{{ totalItens > 0 ? (paginaAtual - 1) * itensPorPagina + 1 : 0 }}</b> \n        até <b>{{ (paginaAtual * itensPorPagina) > totalItens ? totalItens : (paginaAtual * itensPorPagina) }}</b> \n        de um total de <b>{{ totalItens }}</b>\n      </span>\n      \n      <div class=\"inline-flex rounded-md shadow-sm\">\n        <button \n          (click)=\"mudarPagina(-1)\"\n          [disabled]=\"paginaAtual === 1\"\n          class=\"px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-l-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed\"\n        >\n          Anterior\n        </button>\n        <div class=\"px-4 py-2 text-sm font-bold text-gov-blue-primary bg-gray-50 border-t border-b border-gray-300\">\n          {{ paginaAtual }}\n        </div>\n        <button \n          (click)=\"mudarPagina(1)\"\n          [disabled]=\"paginaAtual >= totalItens / itensPorPagina\"\n          class=\"px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-r-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed\"\n        >\n          Próximo\n        </button>\n      </div>\n    </div>\n  </div>\n</div>"
+        },
+        {
+            "name": "DashboardPageComponent",
+            "id": "component-DashboardPageComponent-a55865a2aec12a07ad7119566e43e2304ddc0fe9deae9d8db216517cde565bc419425a4f1ada1a36e75edce7e4c3467624b342d1401239609c357e99f68b186a",
+            "file": "src/app/features/dashboard/dashboard-page/dashboard-page.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-dashboard-page",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./dashboard-page.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "barChartData",
+                    "defaultValue": "{\n    labels: ['DF', 'SP', 'RJ', 'MG', 'RS'],\n    datasets: [\n      { \n        data: [2500, 5800, 3200, 4100, 2900], \n        label: 'Consumo por UF (Litros)',\n        backgroundColor: '#1351B4', // Azul Gov\n        hoverBackgroundColor: '#0c326f'\n      }\n    ]\n  }",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "ChartData<bar>",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 31,
+                    "modifierKind": [
+                        125
+                    ]
+                },
+                {
+                    "name": "barChartOptions",
+                    "defaultValue": "{\n    responsive: true,\n    plugins: {\n      legend: { display: true, position: 'top' },\n    }\n  }",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "ChartConfiguration",
+                    "indexKey": "options",
+                    "optional": false,
+                    "description": "",
+                    "line": 22,
+                    "modifierKind": [
+                        125
+                    ]
+                },
+                {
+                    "name": "barChartType",
+                    "defaultValue": "'bar'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "ChartType",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 28,
+                    "modifierKind": [
+                        125
+                    ]
+                },
+                {
+                    "name": "facade",
+                    "defaultValue": "inject(AbastecimentoFacade)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "unknown",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 18,
+                    "modifierKind": [
+                        123
+                    ]
+                },
+                {
+                    "name": "lineChartData",
+                    "defaultValue": "{\n    labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun'],\n    datasets: [\n      {\n        data: [5.85, 5.90, 6.02, 5.98, 5.92, 5.95],\n        label: 'Preço Médio (R$)',\n        borderColor: '#1351B4',\n        backgroundColor: 'rgba(19, 81, 180, 0.1)',\n        fill: true,\n        tension: 0.4\n      }\n    ]\n  }",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "ChartConfiguration",
+                    "indexKey": "data",
+                    "optional": false,
+                    "description": "",
+                    "line": 43,
+                    "modifierKind": [
+                        125
+                    ]
+                },
+                {
+                    "name": "lineChartOptions",
+                    "defaultValue": "{\n      responsive: true,\n      maintainAspectRatio: false,\n      plugins: {\n        legend: { display: true, position: 'top' }\n      }\n    }",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "ChartConfiguration",
+                    "indexKey": "options",
+                    "optional": false,
+                    "description": "",
+                    "line": 57,
+                    "modifierKind": [
+                        125
+                    ]
+                },
+                {
+                    "name": "stats$",
+                    "defaultValue": "this.facade.stats$",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "unknown",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 19
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 65,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "BaseChartDirective",
+                    "type": "directive"
+                },
+                {
+                    "name": "RouterLink"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, OnInit, inject } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { AbastecimentoFacade } from '../../../core/facades/abastecimento.facade';\nimport { BaseChartDirective } from 'ng2-charts'; // Importação essencial\nimport { ChartConfiguration, ChartData, ChartType, Chart, registerables } from 'chart.js';\nimport { RouterLink } from '@angular/router';\nChart.register(...registerables); // Isso registra barras, linhas, eixos, etc.\n\nChart.register(...registerables); // Registro global obrigatório para o Chart.js v4\n\n@Component({\n  selector: 'app-dashboard-page',\n  standalone: true,\n  imports: [CommonModule, BaseChartDirective,RouterLink], // Adicione o BaseChartDirective aqui\n  templateUrl: './dashboard-page.html',\n})\nexport class DashboardPageComponent implements OnInit {\n  private facade = inject(AbastecimentoFacade);\n  stats$ = this.facade.stats$;\n\n  // Configurações do Gráfico de Barras\n  public barChartOptions: ChartConfiguration['options'] = {\n    responsive: true,\n    plugins: {\n      legend: { display: true, position: 'top' },\n    }\n  };\n  public barChartType: ChartType = 'bar';\n  \n  // Dados estáticos para o exemplo (podemos evoluir para dinâmicos depois)\n  public barChartData: ChartData<'bar'> = {\n    labels: ['DF', 'SP', 'RJ', 'MG', 'RS'],\n    datasets: [\n      { \n        data: [2500, 5800, 3200, 4100, 2900], \n        label: 'Consumo por UF (Litros)',\n        backgroundColor: '#1351B4', // Azul Gov\n        hoverBackgroundColor: '#0c326f'\n      }\n    ]\n  };\n\n    public lineChartData: ChartConfiguration<'line'>['data'] = {\n    labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun'],\n    datasets: [\n      {\n        data: [5.85, 5.90, 6.02, 5.98, 5.92, 5.95],\n        label: 'Preço Médio (R$)',\n        borderColor: '#1351B4',\n        backgroundColor: 'rgba(19, 81, 180, 0.1)',\n        fill: true,\n        tension: 0.4\n      }\n    ]\n  };\n\n    public lineChartOptions: ChartConfiguration<'line'>['options'] = {\n      responsive: true,\n      maintainAspectRatio: false,\n      plugins: {\n        legend: { display: true, position: 'top' }\n      }\n    };\n\n  ngOnInit(): void {\n    this.facade.carregarDadosDash();\n  }\n}",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<div class=\"py-6\" *ngIf=\"stats$ | async as stats\">\n  \n\n  <div *ngIf=\"stats$ | async as stats\">\n  <nav class=\"br-breadcrumb mb-6\" aria-label=\"Breadcrumbs\">\n    <ul class=\"crumb-list\">\n      <li class=\"crumb\">\n        <a [routerLink]=\"['/']\" class=\"home-link\">\n          <svg width=\"20\" height=\"23\" viewBox=\"0 0 20 23\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n            <path d=\"M9.75 8.65625C9.8125 8.59375 9.90625 8.5625 10 8.5625C10.0625 8.5625 10.1562 8.59375 10.2188 8.65625L16 13.375V18.5C16 18.7812 15.75 19 15.5 19H11.9688C11.7188 19 11.4688 18.7812 11.4688 18.5V15.5C11.4688 15.25 11.25 15 10.9688 15H8.96875C8.71875 15 8.46875 15.25 8.46875 15.5V18.5C8.46875 18.7812 8.25 19 8 19H4.5C4.21875 19 4 18.7812 4 18.5V13.4062L9.75 8.65625ZM18.8438 11.875C18.9375 11.9375 19 12.0625 19 12.1562C19 12.25 18.9688 12.3438 18.9062 12.4062L18.0938 13.375C18.0312 13.4688 17.9375 13.5 17.8125 13.5C17.7188 13.5 17.625 13.4688 17.5625 13.4062L10.2188 7.375C10.1562 7.3125 10.0625 7.28125 10 7.28125C9.90625 7.28125 9.8125 7.3125 9.75 7.375L2.40625 13.4062C2.34375 13.4688 2.25 13.5 2.15625 13.5C2.03125 13.5 1.9375 13.4688 1.875 13.375L1.0625 12.4062C1.03125 12.3438 0.96875 12.25 0.96875 12.1562C0.96875 12.0625 1.03125 11.9375 1.125 11.875L9.03125 5.34375C9.28125 5.15625 9.625 5.03125 10 5.03125C10.3438 5.03125 10.6875 5.15625 10.9375 5.34375L13.75 7.65625V5.40625C13.75 5.1875 13.9062 5.03125 14.125 5.03125H15.875C16.0625 5.03125 16.25 5.1875 16.25 5.40625V9.71875L18.8438 11.875Z\" fill=\"#1351B4\"/>\n          </svg>\n        </a>\n      </li>\n      <li class=\"crumb active\">\n        <span class=\"chevron\">></span>\n        <span>Dashboard</span>\n      </li>\n    </ul>\n  </nav>\n  <h2 class=\"text-2xl font-bold text-gov-blue-primary mb-6\">Visão Geral</h2>\n  \n  <div class=\"grid grid-cols-1 md:grid-cols-3 gap-6\">\n    <div class=\"bg-white p-6 rounded-lg shadow-sm border-l-8 border-gov-blue-primary\">\n      <p class=\"text-sm text-gray-500 font-bold uppercase\">Preço Médio Nacional</p>\n      <p class=\"text-3xl font-black text-gov-blue-primary\">\n        {{ stats.precoMedioNacional | currency:'BRL' }}\n      </p>\n    </div>\n\n    <div class=\"bg-white p-6 rounded-lg shadow-sm border-l-8 border-gov-yellow\">\n      <p class=\"text-sm text-gray-500 font-bold uppercase\">Total Consumido (Litros)</p>\n      <p class=\"text-3xl font-black text-gray-800\">\n        {{ stats.totalConsumido | number }} L\n      </p>\n    </div>\n\n    <div class=\"bg-white p-6 rounded-lg shadow-sm border-l-8 border-green-600\">\n      <p class=\"text-sm text-gray-500 font-bold uppercase\">Postos Monitorados</p>\n      <p class=\"text-3xl font-black text-gray-800\">\n        {{ stats.postosAtivos }}\n      </p>\n    </div>\n  </div>\n  <div class=\"mt-8\">\n  <div class=\"bg-white p-6 rounded-xl shadow-sm border border-gray-100\">\n\n      <div class=\"grid grid-cols-1 lg:grid-cols-2 gap-6 mt-8\">\n  \n        <div class=\"bg-white p-6 rounded-lg shadow border border-gray-200\">\n          <h3 class=\"text-gov-blue-primary font-bold uppercase text-sm mb-4\">\n            Evolução de Preço (Últimos 6 Meses)\n          </h3>\n\n          <div class=\"relative w-full h-96\">\n            <canvas\n              baseChart\n              [data]=\"lineChartData\"\n              [options]=\"lineChartOptions\"\n              [type]=\"'line'\">\n            </canvas>\n          </div>\n        </div>\n\n        <div class=\"bg-white p-6 rounded-lg shadow border border-gray-200\">\n          <h3 class=\"text-gov-blue-primary font-bold uppercase text-sm mb-4\">\n            Distribuição de Consumo por Regional\n          </h3>\n\n          <div class=\"relative w-full h-96\">\n            <canvas\n              baseChart\n              [data]=\"barChartData\"\n              [options]=\"barChartOptions\"\n              [type]=\"barChartType\">\n            </canvas>\n          </div>\n        </div>\n\n      </div>\n\n\n  </div>\n\n</div>"
+        },
+        {
+            "name": "GovHeader",
+            "id": "component-GovHeader-361b2fa85d9a4fc735c2c8c17cc235bf88d11e040ac3237e3c86a9b4945854c542b3095e1e9e7ae169b6e4f7f6b2da523fdc47a8236e39816910ac5a9483ef3e",
+            "file": "src/app/shared/components/gov-header/gov-header.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-gov-header",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./gov-header.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "accessibilityService",
+                    "defaultValue": "inject(AccessibilityService)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "unknown",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 15,
+                    "modifierKind": [
+                        123
+                    ]
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "toggleContrast",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 17,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "RouterLink"
+                },
+                {
+                    "name": "RouterLinkActive"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, inject } from '@angular/core'; // Importe o inject\nimport { CommonModule } from '@angular/common';\nimport { RouterLink, RouterLinkActive } from '@angular/router';\nimport { AccessibilityService } from '../../../core/services/accessibility.service'; // Ajuste o caminho se necessário\n\n@Component({\n  selector: 'app-gov-header',\n  standalone: true,\n  imports: [CommonModule, RouterLink, RouterLinkActive],\n  templateUrl: './gov-header.html',\n  styleUrl: './gov-header.css'\n})\nexport class GovHeader {\n  // Injetando o serviço de acessibilidade\n  private accessibilityService = inject(AccessibilityService);\n\n  toggleContrast() {\n    this.accessibilityService.toggleHighContrast();\n  }\n}",
+            "styleUrl": "./gov-header.css",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<!-- Recomendo adicionar a cor azul oficial no seu tailwind.config.js ou usar o hexadecimal direto -->\n<header class=\"w-full bg-white border-b border-gray-200 shadow-sm font-sans\">\n  <div class=\"container mx-auto px-4 md:px-8\">\n    \n    <!-- ====== LINHA SUPERIOR (Logo, Links e Login) ====== -->\n    <div class=\"flex items-center justify-between py-4\">\n      \n      <!-- Esquerda: Logo e Ministério -->\n      <div class=\"flex items-center\">\n        <svg width=\"138\" height=\"50\" viewBox=\"0 0 138 50\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">\n          <rect width=\"138\" height=\"50\" fill=\"url(#pattern0_553_2421)\"/>\n          <defs>\n          <pattern id=\"pattern0_553_2421\" patternContentUnits=\"objectBoundingBox\" width=\"1\" height=\"1\">\n          <use xlink:href=\"#image0_553_2421\" transform=\"matrix(0.00503221 0 0 0.0138889 -0.00322061 0)\"/>\n          </pattern>\n          <image id=\"image0_553_2421\" width=\"200\" height=\"72\" preserveAspectRatio=\"none\" xlink:href=\"data:image/png;base64,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\"/>\n          </defs>\n          </svg>\n        <div class=\"ml-4 pl-4 border-l border-gray-300\">\n          <span class=\"block text-sm font-normal text-gray-800 leading-tight\">Ministério de Minas e <br> Energia</span>\n        </div>\n      </div>\n\n      <!-- Direita: Links, Ícones e Botão Entrar -->\n      <div class=\"flex items-center gap-6\">\n        <!-- Links (Ocultos em mobile se desejar) -->\n        <nav class=\"hidden lg:flex items-center gap-2 text-sm font-medium\">\n          <a\n            routerLink=\"/dashboard\"\n            routerLinkActive=\"bg-blue-100\"\n            [routerLinkActiveOptions]=\"{ exact: true }\"\n            class=\"px-3 py-1.5 rounded-full text-[#1351B4]\n                  hover:bg-blue-100\n                  focus:outline-none focus:ring-2 focus:ring-blue-200\n                  transition-colors duration-200\"\n          >\n            Dashboard\n          </a>\n\n          <a\n            routerLink=\"/consulta\"\n            routerLinkActive=\"bg-blue-100\"\n            class=\"px-3 py-1.5 rounded-full text-[#1351B4]\n                  hover:bg-blue-100\n                  focus:outline-none focus:ring-2 focus:ring-blue-200\n                  transition-colors duration-200\"\n          >\n            Consulta\n          </a>\n        </nav>\n\n\n        <!-- Divisor Vertical -->\n        <div class=\"hidden lg:block h-6 border-l border-gray-300\"></div>\n\n        <!-- Ícones de Acessibilidade/Utilidades -->\n        <div class=\"flex items-center gap-4 text-[#1351b4]\">\n          <button title=\"Gráficos\" class=\"hover:opacity-70\">\n            <svg xmlns=\"http://www.w3.org/2000/svg\" class=\"w-5 h-5\" fill=\"none\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-width=\"2\">\n              <path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z\" />\n            </svg>\n          </button>\n          <button title=\"Acessibilidade\" class=\"hover:opacity-70\">\n            <svg xmlns=\"http://www.w3.org/2000/svg\" class=\"w-5 h-5\" fill=\"none\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-width=\"2\">\n              <path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z\" />\n            </svg>\n          </button>\n          <button title=\"Chat\" class=\"hover:opacity-70\">\n            <svg xmlns=\"http://www.w3.org/2000/svg\" class=\"w-5 h-5\" fill=\"currentColor\" viewBox=\"0 0 24 24\">\n              <path d=\"M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z\" />\n            </svg>\n          </button>\n          <button \n            (click)=\"toggleContrast()\" \n            title=\"Alternar Alto Contraste\" \n            aria-label=\"Alternar Alto Contraste\"\n            class=\"hover:opacity-70 focus:outline-none focus:ring-2 focus:ring-blue-400 rounded-full p-1\"\n          >\n            <svg xmlns=\"http://www.w3.org/2000/svg\" class=\"w-5 h-5\" fill=\"currentColor\" viewBox=\"0 0 24 24\">\n              <path d=\"M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zM12 4c-4.41 0-8 3.59-8 8s3.59 8 8 8V4z\" />\n            </svg>\n          </button>\n        </div>\n\n        <!-- Botão Entrar -->\n        <button class=\"flex items-center gap-2 bg-[#f8f8f8] hover:bg-gray-100 text-[#1351b4] px-4 py-1.5 rounded-full text-sm font-bold shadow-sm transition-all border border-gray-100\">\n          <svg xmlns=\"http://www.w3.org/2000/svg\" class=\"w-4 h-4\" fill=\"currentColor\" viewBox=\"0 0 24 24\">\n            <path d=\"M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z\" />\n          </svg>\n          Entrar\n        </button>\n      </div>\n    </div>\n\n    <!-- ====== LINHA INFERIOR (Menu, Título e Busca) ====== -->\n    <div class=\"flex flex-col md:flex-row items-center justify-between pb-6 gap-4\">\n      \n      <!-- Menu e Título -->\n      <div class=\"flex items-start gap-4 w-full md:w-auto\">\n        <button class=\"mt-1 text-[#1351b4]\">\n          <svg xmlns=\"http://www.w3.org/2000/svg\" class=\"w-6 h-6\" fill=\"none\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-width=\"2.5\">\n            <path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M4 6h16M4 12h16M4 18h16\" />\n          </svg>\n        </button>\n        <div>\n          <h2 class=\"text-xl font-normal text-gray-700 leading-tight tracking-tight\">\n            Agencia Nacional de Gás e Petróleo\n          </h2>\n          <p class=\"text-xs text-gray-500 font-light\">Painel Gerencial de Combustíveis</p>\n        </div>\n      </div>\n\n      <!-- Barra de Busca -->\n      <div class=\"relative w-full max-w-[400px]\">\n        <input\n          type=\"text\"\n          placeholder=\"O que você procura?\"\n          class=\"w-full bg-[#f2f2f2] border-none rounded-lg px-4 py-3 text-sm italic text-gray-600 focus:ring-2 focus:ring-[#1351b4] outline-none\"\n        />\n        <button class=\"absolute right-3 top-1/2 -translate-y-1/2 text-[#1351b4]\">\n          <svg xmlns=\"http://www.w3.org/2000/svg\" class=\"w-5 h-5\" fill=\"none\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-width=\"3\">\n            <path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z\" />\n          </svg>\n        </button>\n      </div>\n\n    </div>\n  </div>\n</header>"
+        },
+        {
+            "name": "HeaderComponent",
+            "id": "component-HeaderComponent-48b9abe37706bc42f20cfa97ed9f943678344ea7d254c0c82183c657750c2191b43486fe730c778627b2ea6aa0e2f33a7abcf3ce08b68ad18b062ad99ea97acb",
+            "file": "src/stories/header.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "storybook-header",
+            "styleUrls": [
+                "./header.css"
+            ],
+            "styles": [],
+            "template": "<header>  <div class=\"storybook-header\">\n    <div>\n      <svg width=\"32\" height=\"32\" viewBox=\"0 0 32 32\" xmlns=\"http://www.w3.org/2000/svg\">\n        <g fill=\"none\" fillRule=\"evenodd\">\n          <path\n            d=\"M10 0h12a10 10 0 0110 10v12a10 10 0 01-10 10H10A10 10 0 010 22V10A10 10 0 0110 0z\"\n            fill=\"#FFF\"\n          />\n          <path\n            d=\"M5.3 10.6l10.4 6v11.1l-10.4-6v-11zm11.4-6.2l9.7 5.5-9.7 5.6V4.4z\"\n            fill=\"#555AB9\"\n          />\n          <path d=\"M27.2 10.6v11.2l-10.5 6V16.5l10.5-6zM15.7 4.4v11L6 10l9.7-5.5z\" fill=\"#91BAF8\" />\n        </g>\n      </svg>\n      <h1>Acme</h1>\n    </div>\n    <div>\n      <div *ngIf=\"user\">\n        <span class=\"welcome\">\n          Welcome, <b>{{ user.name }}</b\n          >!\n        </span>\n        <storybook-button\n          *ngIf=\"user\"\n          size=\"small\"\n          (onClick)=\"onLogout.emit($event)\"\n          label=\"Log out\"\n        ></storybook-button>\n      </div>\n      <div *ngIf=\"!user\">\n        <storybook-button\n          *ngIf=\"!user\"\n          size=\"small\"\n          class=\"margin-left\"\n          (onClick)=\"onLogin.emit($event)\"\n          label=\"Log in\"\n        ></storybook-button>\n        <storybook-button\n          *ngIf=\"!user\"\n          size=\"small\"\n          [primary]=\"true\"\n          class=\"margin-left\"\n          (onClick)=\"onCreateAccount.emit($event)\"\n          label=\"Sign up\"\n        ></storybook-button>\n      </div>\n    </div>\n  </div>\n</header>",
+            "templateUrl": [],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "user",
+                    "defaultValue": "null",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 66,
+                    "type": "User | null",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "onCreateAccount",
+                    "defaultValue": "new EventEmitter<Event>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 75,
+                    "type": "EventEmitter"
+                },
+                {
+                    "name": "onLogin",
+                    "defaultValue": "new EventEmitter<Event>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 69,
+                    "type": "EventEmitter"
+                },
+                {
+                    "name": "onLogout",
+                    "defaultValue": "new EventEmitter<Event>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 72,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "ButtonComponent",
+                    "type": "component"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, Input, Output, EventEmitter } from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\nimport { ButtonComponent } from './button.component';\nimport type { User } from './user';\n\n@Component({\n  selector: 'storybook-header',\n  standalone: true,\n  imports: [CommonModule, ButtonComponent],\n  template: `<header>\n  <div class=\"storybook-header\">\n    <div>\n      <svg width=\"32\" height=\"32\" viewBox=\"0 0 32 32\" xmlns=\"http://www.w3.org/2000/svg\">\n        <g fill=\"none\" fillRule=\"evenodd\">\n          <path\n            d=\"M10 0h12a10 10 0 0110 10v12a10 10 0 01-10 10H10A10 10 0 010 22V10A10 10 0 0110 0z\"\n            fill=\"#FFF\"\n          />\n          <path\n            d=\"M5.3 10.6l10.4 6v11.1l-10.4-6v-11zm11.4-6.2l9.7 5.5-9.7 5.6V4.4z\"\n            fill=\"#555AB9\"\n          />\n          <path d=\"M27.2 10.6v11.2l-10.5 6V16.5l10.5-6zM15.7 4.4v11L6 10l9.7-5.5z\" fill=\"#91BAF8\" />\n        </g>\n      </svg>\n      <h1>Acme</h1>\n    </div>\n    <div>\n      <div *ngIf=\"user\">\n        <span class=\"welcome\">\n          Welcome, <b>{{ user.name }}</b\n          >!\n        </span>\n        <storybook-button\n          *ngIf=\"user\"\n          size=\"small\"\n          (onClick)=\"onLogout.emit($event)\"\n          label=\"Log out\"\n        ></storybook-button>\n      </div>\n      <div *ngIf=\"!user\">\n        <storybook-button\n          *ngIf=\"!user\"\n          size=\"small\"\n          class=\"margin-left\"\n          (onClick)=\"onLogin.emit($event)\"\n          label=\"Log in\"\n        ></storybook-button>\n        <storybook-button\n          *ngIf=\"!user\"\n          size=\"small\"\n          [primary]=\"true\"\n          class=\"margin-left\"\n          (onClick)=\"onCreateAccount.emit($event)\"\n          label=\"Sign up\"\n        ></storybook-button>\n      </div>\n    </div>\n  </div>\n</header>`,\n  styleUrls: ['./header.css'],\n})\nexport class HeaderComponent {\n  @Input()\n  user: User | null = null;\n\n  @Output()\n  onLogin = new EventEmitter<Event>();\n\n  @Output()\n  onLogout = new EventEmitter<Event>();\n\n  @Output()\n  onCreateAccount = new EventEmitter<Event>();\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ".storybook-header {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  border-bottom: 1px solid rgba(0, 0, 0, 0.1);\n  padding: 15px 20px;\n  font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;\n}\n\n.storybook-header svg {\n  display: inline-block;\n  vertical-align: top;\n}\n\n.storybook-header h1 {\n  display: inline-block;\n  vertical-align: top;\n  margin: 6px 0 6px 10px;\n  font-weight: 700;\n  font-size: 20px;\n  line-height: 1;\n}\n\n.storybook-header button + button {\n  margin-left: 10px;\n}\n\n.storybook-header .welcome {\n  margin-right: 10px;\n  color: #333;\n  font-size: 14px;\n}\n",
+                    "styleUrl": "./header.css"
+                }
+            ],
+            "stylesData": "",
+            "extends": []
+        },
+        {
+            "name": "PageComponent",
+            "id": "component-PageComponent-21dd6eb370b4983b5c21c84d40e6f54d266a9d9af9889e6e76b35c43058bd53b3e451bad089d5adf4bea46647ba10265a2fa8cb15630398e75636307d4817fc6",
+            "file": "src/stories/page.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "storybook-page",
+            "styleUrls": [
+                "./page.css"
+            ],
+            "styles": [],
+            "template": "<article>  <storybook-header\n    [user]=\"user\"\n    (onLogout)=\"doLogout()\"\n    (onLogin)=\"doLogin()\"\n    (onCreateAccount)=\"doCreateAccount()\"\n  ></storybook-header>\n  <section class=\"storybook-page\">\n    <h2>Pages in Storybook</h2>\n    <p>\n      We recommend building UIs with a\n      <a href=\"https://componentdriven.org\" target=\"_blank\" rel=\"noopener noreferrer\">\n        <strong>component-driven</strong>\n      </a>\n      process starting with atomic components and ending with pages.\n    </p>\n    <p>\n      Render pages with mock data. This makes it easy to build and review page states without\n      needing to navigate to them in your app. Here are some handy patterns for managing page data\n      in Storybook:\n    </p>\n    <ul>\n      <li>\n        Use a higher-level connected component. Storybook helps you compose such data from the\n        \"args\" of child component stories\n      </li>\n      <li>\n        Assemble data in the page component from your services. You can mock these services out\n        using Storybook.\n      </li>\n    </ul>\n    <p>\n      Get a guided tutorial on component-driven development at\n      <a href=\"https://storybook.js.org/tutorials/\" target=\"_blank\" rel=\"noopener noreferrer\">\n        Storybook tutorials\n      </a>\n      . Read more in the\n      <a href=\"https://storybook.js.org/docs\" target=\"_blank\" rel=\"noopener noreferrer\"> docs </a>\n      .\n    </p>\n    <div class=\"tip-wrapper\">\n      <span class=\"tip\">Tip</span> Adjust the width of the canvas with the\n      <svg width=\"10\" height=\"10\" viewBox=\"0 0 12 12\" xmlns=\"http://www.w3.org/2000/svg\">\n        <g fill=\"none\" fillRule=\"evenodd\">\n          <path\n            d=\"M1.5 5.2h4.8c.3 0 .5.2.5.4v5.1c-.1.2-.3.3-.4.3H1.4a.5.5 0 01-.5-.4V5.7c0-.3.2-.5.5-.5zm0-2.1h6.9c.3 0 .5.2.5.4v7a.5.5 0 01-1 0V4H1.5a.5.5 0 010-1zm0-2.1h9c.3 0 .5.2.5.4v9.1a.5.5 0 01-1 0V2H1.5a.5.5 0 010-1zm4.3 5.2H2V10h3.8V6.2z\"\n            id=\"a\"\n            fill=\"#999\"\n          />\n        </g>\n      </svg>\n      Viewports addon in the toolbar\n    </div>\n  </section>\n</article>",
+            "templateUrl": [],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "user",
+                    "defaultValue": "null",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "User | null",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 69
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "doCreateAccount",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 79,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "doLogin",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 75,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "doLogout",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 71,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "HeaderComponent",
+                    "type": "component"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component } from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\nimport { HeaderComponent } from './header.component';\nimport type { User } from './user';\n\n@Component({\n  selector: 'storybook-page',\n  standalone: true,\n  imports: [CommonModule, HeaderComponent],\n  template: `<article>\n  <storybook-header\n    [user]=\"user\"\n    (onLogout)=\"doLogout()\"\n    (onLogin)=\"doLogin()\"\n    (onCreateAccount)=\"doCreateAccount()\"\n  ></storybook-header>\n  <section class=\"storybook-page\">\n    <h2>Pages in Storybook</h2>\n    <p>\n      We recommend building UIs with a\n      <a href=\"https://componentdriven.org\" target=\"_blank\" rel=\"noopener noreferrer\">\n        <strong>component-driven</strong>\n      </a>\n      process starting with atomic components and ending with pages.\n    </p>\n    <p>\n      Render pages with mock data. This makes it easy to build and review page states without\n      needing to navigate to them in your app. Here are some handy patterns for managing page data\n      in Storybook:\n    </p>\n    <ul>\n      <li>\n        Use a higher-level connected component. Storybook helps you compose such data from the\n        \"args\" of child component stories\n      </li>\n      <li>\n        Assemble data in the page component from your services. You can mock these services out\n        using Storybook.\n      </li>\n    </ul>\n    <p>\n      Get a guided tutorial on component-driven development at\n      <a href=\"https://storybook.js.org/tutorials/\" target=\"_blank\" rel=\"noopener noreferrer\">\n        Storybook tutorials\n      </a>\n      . Read more in the\n      <a href=\"https://storybook.js.org/docs\" target=\"_blank\" rel=\"noopener noreferrer\"> docs </a>\n      .\n    </p>\n    <div class=\"tip-wrapper\">\n      <span class=\"tip\">Tip</span> Adjust the width of the canvas with the\n      <svg width=\"10\" height=\"10\" viewBox=\"0 0 12 12\" xmlns=\"http://www.w3.org/2000/svg\">\n        <g fill=\"none\" fillRule=\"evenodd\">\n          <path\n            d=\"M1.5 5.2h4.8c.3 0 .5.2.5.4v5.1c-.1.2-.3.3-.4.3H1.4a.5.5 0 01-.5-.4V5.7c0-.3.2-.5.5-.5zm0-2.1h6.9c.3 0 .5.2.5.4v7a.5.5 0 01-1 0V4H1.5a.5.5 0 010-1zm0-2.1h9c.3 0 .5.2.5.4v9.1a.5.5 0 01-1 0V2H1.5a.5.5 0 010-1zm4.3 5.2H2V10h3.8V6.2z\"\n            id=\"a\"\n            fill=\"#999\"\n          />\n        </g>\n      </svg>\n      Viewports addon in the toolbar\n    </div>\n  </section>\n</article>`,\n  styleUrls: ['./page.css'],\n})\nexport class PageComponent {\n  user: User | null = null;\n\n  doLogout() {\n    this.user = null;\n  }\n\n  doLogin() {\n    this.user = { name: 'Jane Doe' };\n  }\n\n  doCreateAccount() {\n    this.user = { name: 'Jane Doe' };\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ".storybook-page {\n  margin: 0 auto;\n  padding: 48px 20px;\n  max-width: 600px;\n  color: #333;\n  font-size: 14px;\n  line-height: 24px;\n  font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;\n}\n\n.storybook-page h2 {\n  display: inline-block;\n  vertical-align: top;\n  margin: 0 0 4px;\n  font-weight: 700;\n  font-size: 32px;\n  line-height: 1;\n}\n\n.storybook-page p {\n  margin: 1em 0;\n}\n\n.storybook-page a {\n  color: inherit;\n}\n\n.storybook-page ul {\n  margin: 1em 0;\n  padding-left: 30px;\n}\n\n.storybook-page li {\n  margin-bottom: 8px;\n}\n\n.storybook-page .tip {\n  display: inline-block;\n  vertical-align: top;\n  margin-right: 10px;\n  border-radius: 1em;\n  background: #e7fdd8;\n  padding: 4px 12px;\n  color: #357a14;\n  font-weight: 700;\n  font-size: 11px;\n  line-height: 12px;\n}\n\n.storybook-page .tip-wrapper {\n  margin-top: 40px;\n  margin-bottom: 40px;\n  font-size: 13px;\n  line-height: 20px;\n}\n\n.storybook-page .tip-wrapper svg {\n  display: inline-block;\n  vertical-align: top;\n  margin-top: 3px;\n  margin-right: 4px;\n  width: 12px;\n  height: 12px;\n}\n\n.storybook-page .tip-wrapper svg path {\n  fill: #1ea7fd;\n}\n",
+                    "styleUrl": "./page.css"
+                }
+            ],
+            "stylesData": "",
+            "extends": []
+        }
+    ],
+    "modules": [],
+    "miscellaneous": {
+        "variables": [
+            {
+                "name": "appConfig",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/app.config.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "ApplicationConfig",
+                "defaultValue": "{\n  providers: [\n    provideBrowserGlobalErrorListeners(),\n    provideRouter(routes),\n    provideHttpClient(),\n  ]\n}"
+            },
+            {
+                "name": "routes",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/app.routes.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Routes",
+                "defaultValue": "[\n  // Redireciona a rota vazia para o dashboard automaticamente\n  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },\n  \n  // Define a rota do Dashboard\n  { path: 'dashboard', component: DashboardPageComponent },\n  { path: 'consulta', component: ConsultaListaComponent },\n  { path: 'consulta/:id', component: AbastecimentoDetalheComponent },\n  // Rota de fallback (404) - opcional por enquanto\n  { path: '**', redirectTo: 'dashboard' }\n]"
+            }
+        ],
+        "functions": [],
+        "typealiases": [],
+        "enumerations": [],
+        "groupedVariables": {
+            "src/app/app.config.ts": [
+                {
+                    "name": "appConfig",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/app.config.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "ApplicationConfig",
+                    "defaultValue": "{\n  providers: [\n    provideBrowserGlobalErrorListeners(),\n    provideRouter(routes),\n    provideHttpClient(),\n  ]\n}"
+                }
+            ],
+            "src/app/app.routes.ts": [
+                {
+                    "name": "routes",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/app.routes.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Routes",
+                    "defaultValue": "[\n  // Redireciona a rota vazia para o dashboard automaticamente\n  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },\n  \n  // Define a rota do Dashboard\n  { path: 'dashboard', component: DashboardPageComponent },\n  { path: 'consulta', component: ConsultaListaComponent },\n  { path: 'consulta/:id', component: AbastecimentoDetalheComponent },\n  // Rota de fallback (404) - opcional por enquanto\n  { path: '**', redirectTo: 'dashboard' }\n]"
+                }
+            ]
+        },
+        "groupedFunctions": {},
+        "groupedEnumerations": {},
+        "groupedTypeAliases": {}
+    },
+    "routes": {
+        "name": "<root>",
+        "kind": "module",
+        "children": [
+            {
+                "name": "DashboardPageComponent",
+                "kind": "component",
+                "path": "dashboard",
+                "filename": "src/app/app.routes.ts"
+            },
+            {
+                "name": "ConsultaListaComponent",
+                "kind": "component",
+                "path": "consulta",
+                "filename": "src/app/app.routes.ts"
+            },
+            {
+                "name": "AbastecimentoDetalheComponent",
+                "kind": "component",
+                "path": "consulta/:id",
+                "filename": "src/app/app.routes.ts"
+            }
+        ]
+    },
+    "coverage": {
+        "count": 4,
+        "status": "low",
+        "files": [
+            {
+                "filePath": "src/app/app.config.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "appConfig",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/app.routes.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "routes",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/app.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "App",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/core/facades/abastecimento.facade.ts",
+                "type": "injectable",
+                "linktype": "injectable",
+                "name": "AbastecimentoFacade",
+                "coveragePercent": 0,
+                "coverageCount": "0/8",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/core/models/abastecimento.model.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "Abastecimento",
+                "coveragePercent": 0,
+                "coverageCount": "0/12",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/core/models/abastecimento.model.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "DashboardStats",
+                "coveragePercent": 0,
+                "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/core/services/abastecimento.service.ts",
+                "type": "injectable",
+                "linktype": "injectable",
+                "name": "AbastecimentoService",
+                "coveragePercent": 0,
+                "coverageCount": "0/6",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/core/services/accessibility.service.ts",
+                "type": "injectable",
+                "linktype": "injectable",
+                "name": "AccessibilityService",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/features/consulta/abastecimento-detalhe/abastecimento-detalhe.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "AbastecimentoDetalheComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/6",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/features/consulta/consulta-lista/consulta-lista.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "ConsultaListaComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/14",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/features/dashboard/dashboard-page/dashboard-page.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "DashboardPageComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/9",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/shared/components/gov-header/gov-header.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "GovHeader",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/shared/pipes/mask-pipe.ts",
+                "type": "pipe",
+                "linktype": "pipe",
+                "name": "MaskCpfPipe",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/shared/pipes/mask-pipe.ts",
+                "type": "pipe",
+                "linktype": "pipe",
+                "name": "MaskPlacaPipe",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/button.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "ButtonComponent",
+                "coveragePercent": 83,
+                "coverageCount": "5/6",
+                "status": "very-good"
+            },
+            {
+                "filePath": "src/stories/header.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "HeaderComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/5",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/page.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "PageComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/5",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/user.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "User",
+                "coveragePercent": 0,
+                "coverageCount": "0/2",
+                "status": "low"
+            }
+        ]
+    }
+}
