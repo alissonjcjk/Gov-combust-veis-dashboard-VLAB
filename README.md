@@ -121,7 +121,7 @@ O projeto segue uma arquitetura modular e escalável, separando claramente respo
 ```text
 src/app/
 ├── core/        # Serviços globais, Facades e lógica de negócio
-├── shared/      # Componentes reutilizáveis (Header, Cards, Botões), Pipes e UI Kit
+├── shared/      # Componentes reutilizáveis
 ├── features/    # Módulos principais (Dashboard, Consulta, Detalhes)
 └── .storybook/  # Configurações e documentação visual dos componentes
 ```
