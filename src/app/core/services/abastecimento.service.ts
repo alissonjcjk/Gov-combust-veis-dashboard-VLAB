@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Abastecimento, DashboardStats } from '../models/abastecimento.model';
 
+//Esse arquivo é pela comunicação externa (Api). Ele apenas busca e entrega os dados brutos.
+
 @Injectable({
   providedIn: 'root'
 })

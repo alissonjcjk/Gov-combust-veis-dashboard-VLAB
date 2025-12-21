@@ -3,7 +3,9 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { AbastecimentoFacade } from '../../../core/facades/abastecimento.facade';
 import { MaskPlacaPipe, MaskCpfPipe} from '../../../shared/pipes/mask-pipe';
-import { map, switchMap, filter, tap } from 'rxjs'; // Adicione filter e tap
+import { map, switchMap, filter, tap } from 'rxjs'; 
+
+//Implementa a lógica e comportamento do detalhes da consulta
 
 
 @Component({

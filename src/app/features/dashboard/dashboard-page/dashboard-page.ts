@@ -1,15 +1,18 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AbastecimentoFacade } from '../../../core/facades/abastecimento.facade';
-import { BaseChartDirective } from 'ng2-charts'; // Importação essencial
+import { BaseChartDirective } from 'ng2-charts'; 
 import { ChartConfiguration, ChartData, ChartType, Chart, registerables } from 'chart.js';
 import { RouterLink } from '@angular/router';
-Chart.register(...registerables); // Registro global obrigatório para o Chart.js v4
+
+//Implementação da lógica e comportamento do dashboard
+
+Chart.register(...registerables); 
 
 @Component({
   selector: 'app-dashboard-page',
   standalone: true,
-  imports: [CommonModule, BaseChartDirective,RouterLink], // Adicione o BaseChartDirective aqui
+  imports: [CommonModule, BaseChartDirective,RouterLink], 
   templateUrl: './dashboard-page.html',
 })
 export class DashboardPageComponent implements OnInit {
@@ -25,7 +28,7 @@ export class DashboardPageComponent implements OnInit {
   };
   public barChartType: ChartType = 'bar';
   
-  // Dados estáticos para o exemplo (podemos evoluir para dinâmicos depois)
+  // Dados estáticos para o exemplo 
   public barChartData: ChartData<'bar'> = {
     labels: ['DF', 'SP', 'RJ', 'MG', 'RS'],
     datasets: [

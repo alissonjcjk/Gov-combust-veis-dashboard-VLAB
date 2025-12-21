@@ -1,6 +1,8 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { MaskPlacaPipe, MaskCpfPipe } from './mask-pipe'; 
 
+//Arquivo para uso do storybook
+
 const meta: Meta = {
   title: 'Pipes/Mascaras',
   decorators: [

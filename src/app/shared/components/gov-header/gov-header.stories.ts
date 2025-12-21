@@ -4,6 +4,8 @@ import { GovHeader } from './gov-header';
 import { provideRouter } from '@angular/router';
 import { AccessibilityService } from '../../../core/services/accessibility.service';
 
+//Arquivo que será usado no storybook para simulação
+
 const meta: Meta<GovHeader> = {
   title: 'Componentes/GovHeader',
   component: GovHeader,

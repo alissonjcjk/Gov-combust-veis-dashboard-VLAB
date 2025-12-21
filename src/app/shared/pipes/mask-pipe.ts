@@ -1,5 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
+//Implementação da mascara para cpf e placa
+
 @Pipe({
   name: 'maskPlaca',
   standalone: true

@@ -2,6 +2,8 @@ import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { AbastecimentoService } from './abastecimento.service';
 
+//É o arquivo de testes unitários do serviço. Ele garante que as chamadas para a API funcionem conforme o esperado e que erros sejam tratados corretamente.
+
 describe('AbastecimentoService', () => {
   let service: AbastecimentoService;
   let httpMock: HttpTestingController;

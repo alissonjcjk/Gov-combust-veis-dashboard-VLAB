@@ -3,6 +3,10 @@ import { ConsultaListaComponent } from './consulta-lista';
 import { provideRouter } from '@angular/router';
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
+
+//Adiciona testes para a página de consultas
+
+
 describe('ConsultaLista', () => {
   let component: ConsultaListaComponent;
   let fixture: ComponentFixture<ConsultaListaComponent>;

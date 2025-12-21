@@ -3,9 +3,11 @@ import { CommonModule } from '@angular/common';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { AbastecimentoFacade } from '../../../core/facades/abastecimento.facade';
-import { Abastecimento } from '../../../core/models/abastecimento.model'; // Importe o model
 import { map, combineLatest, startWith, Observable } from 'rxjs';
 import { BehaviorSubject } from 'rxjs';
+
+
+//Lógica e comportamento da pagina de consulta
 
 
 

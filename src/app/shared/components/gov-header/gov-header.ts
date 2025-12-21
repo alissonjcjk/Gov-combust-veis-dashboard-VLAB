@@ -1,7 +1,9 @@
-import { Component, inject } from '@angular/core'; // Importe o inject
+import { Component, inject } from '@angular/core'; 
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { AccessibilityService } from '../../../core/services/accessibility.service'; // Ajuste o caminho se necessário
+import { AccessibilityService } from '../../../core/services/accessibility.service';
+
+//Implementa a lógica e comportamento do header
 
 @Component({
   selector: 'app-gov-header',

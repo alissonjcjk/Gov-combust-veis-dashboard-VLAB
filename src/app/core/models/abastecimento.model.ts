@@ -4,6 +4,9 @@ export interface DashboardStats {
   postosAtivos: number;    // Sincronizado com o HTML
 }
 
+//Contém as interfaces que descrevem os objetos do domínio.
+//Por exemplo, aqui você define o que é um Abastecimento.
+
 export interface Abastecimento {
   id: number;
   data: string;

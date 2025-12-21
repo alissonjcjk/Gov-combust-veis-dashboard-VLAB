@@ -1,4 +1,5 @@
 import { MaskCpfPipe, MaskPlacaPipe } from './mask-pipe';
+//Arquivo de testes com Jasmine
 
 describe('MaskPipe', () => {
   it('create an instance', () => {

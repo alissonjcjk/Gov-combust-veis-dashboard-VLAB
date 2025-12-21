@@ -3,6 +3,8 @@ import { GovHeader } from './gov-header';
 import { AccessibilityService } from '../../../core/services/accessibility.service';
 import { provideRouter } from '@angular/router';
 
+//Arquivo de testes para o header da aplicação com Jasmine
+
 describe('GovHeader - Acessibilidade', () => {
   let component: GovHeader;
   let fixture: ComponentFixture<GovHeader>;

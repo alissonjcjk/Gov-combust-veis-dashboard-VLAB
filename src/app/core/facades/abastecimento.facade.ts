@@ -4,7 +4,11 @@ import { Abastecimento, DashboardStats } from '../models/abastecimento.model';
 import { AbastecimentoService } from '../services/abastecimento.service';
 
 
-//Esse arquivo isola o componente do serviço
+//Esse arquivo isola o componente do serviço.
+//É o ponto único de contato para os componentes (como o Dashboard).
+//Em vez do componente injetar 3 ou 4 serviços diferentes, ele injeta apenas a Facade.
+
+
 @Injectable({
   providedIn: 'root'
 })

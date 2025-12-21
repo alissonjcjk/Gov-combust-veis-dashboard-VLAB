@@ -1,5 +1,8 @@
 import { Injectable, signal } from '@angular/core';
 
+//Esse é um utilitário global, pois gerencia o estado da 
+//acessibilidade (como o modo de alto contraste) para toda a aplicação, manipulando o body do documento ou disparando eventos globais.
+
 @Injectable({ providedIn: 'root' })
 export class AccessibilityService {
   // Usamos um Signal para rastrear o estado (Angular 17+)
