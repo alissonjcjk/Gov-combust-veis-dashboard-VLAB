@@ -1,5 +1,24 @@
-/* You can add global styles to this file, and also import other style files */
-/* Estilização do Breadcrumb */
+@import url('https://fonts.cdnfonts.com/css/rawline');
+@import "tailwindcss";
+
+/* 2. CONFIGURAÇÃO DE TEMA (Tailwind v4) */
+@theme {
+  --color-gov-blue-primary: #1351b4;
+  --color-gov-blue-dark: #0c326f;
+  --color-gov-gray-light: #f8f8f8;
+  --color-gov-yellow: #ffcc00;
+  
+  --font-sans: "Rawline", "Montserrat", "sans-serif";
+}
+
+/* 3. ESTILOS GLOBAIS E TIPOGRAFIA */
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 4. ESTILIZAÇÃO DO BREADCRUMB */
 .br-breadcrumb {
   display: flex;
   align-items: center;
@@ -11,7 +30,7 @@
   list-style: none;
   padding: 0;
   margin: 0;
-  gap: 8px; /* Espaço entre os itens */
+  gap: 8px;
 }
 
 .crumb {
@@ -21,7 +40,7 @@
 }
 
 .crumb a {
-  color: #1351B4; /* Azul Oficial Gov.br */
+  color: #1351B4;
   text-decoration: none;
 }
 
@@ -30,7 +49,7 @@
 }
 
 .crumb.active span {
-  color: #333333; /* Cor do item atual */
+  color: #333333;
   font-weight: 600;
 }
 
@@ -44,16 +63,13 @@
 .home-link svg {
   display: block;
 }
-/* ==========================================================================
-   ESTILOS DE ACESSIBILIDADE: PADRÃO GOVERNO FEDERAL (ATUALIZADO)
-   ========================================================================== */
 
+/* 5. ACESSIBILIDADE: ALTO CONTRASTE */
 body.high-contrast {
   background-color: #000 !important;
   color: #fff !important;
 }
 
-/* Inverte as cores dos containers, cards e cabeçalho */
 body.high-contrast header,
 body.high-contrast .container,
 body.high-contrast main,
@@ -77,44 +93,24 @@ body.high-contrast [class*="text-gray-"] {
   color: #ffffff !important; 
 }
 
-/* Links e Botões: Mantemos brancos com sublinhado para distinção visual */
 body.high-contrast a, 
 body.high-contrast button {
   color: #ffffff !important;
   text-decoration: underline !important;
 }
 
-/* Ajuste específico para as bordas coloridas dos cards de KPI */
 body.high-contrast [class*="border-l-4"] {
   border-left-color: #fff !important;
 }
 
-/* Sobrescreve inputs e campos de busca */
 body.high-contrast input {
   background-color: #000 !important;
   color: #fff !important;
   border: 2px solid #fff !important;
 }
 
-/* Ícones de utilidade no header */
 body.high-contrast .text-\[\#1351b4\],
 body.high-contrast svg {
   fill: #ffffff !important;
   color: #ffffff !important;
-}
-
-@import "tailwindcss";
-
-@theme {
-  --color-gov-blue-primary: #1351b4;
-  --color-gov-blue-dark: #0c326f;
-  --color-gov-gray-light: #f8f8f8;
-  --color-gov-yellow: #ffcc00;
-  
-  --font-sans: "Rawline", "Montserrat", "sans-serif";
-}
-
-/* Estilo padrão do corpo seguindo o DSGOV */
-body {
-  @apply bg-[var(--color-gov-gray-light)] text-[#333333] font-sans;
 }
