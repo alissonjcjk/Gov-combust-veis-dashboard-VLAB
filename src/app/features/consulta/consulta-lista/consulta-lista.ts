@@ -31,17 +31,17 @@ export class ConsultaListaComponent implements OnInit {
   dataFimControl = new FormControl('');
 
   ufs = ['AC','AL','AP','AM','BA','CE','DF','ES','GO','MA','MT','MS','MG','PA','PB','PR','PE','PI','RJ','RN','RS','RO','RR','SC','SP','SE','TO'];
-  // Adicionamos a tipagem explícita : Observable<Abastecimento[]>
+  // Adiciona a tipagem explícita : Observable<Abastecimento[]>
   abastecimentosFiltrados$ = combineLatest([
     this.facade.abastecimentos$,
     this.ufControl.valueChanges.pipe(startWith('')),
     this.combustivelControl.valueChanges.pipe(startWith('')),
     this.dataInicioControl.valueChanges.pipe(startWith('')),
     this.dataFimControl.valueChanges.pipe(startWith('')),
-    this.paginaAtual$ // Adicionamos a página ao fluxo
+    this.paginaAtual$ 
   ]).pipe(
     map(([lista, uf, combustivel, dataInicio, dataFim, pagina]) => {
-      // 1. Primeiro filtramos a lista completa
+      // 1. Primeiro filtra a lista completa
       const filtrados = lista.filter(item => {
         const filtroUF = !uf || item.uf === uf;
         const filtroCombustivel = !combustivel || item.combustivel === combustivel;
@@ -54,10 +54,10 @@ export class ConsultaListaComponent implements OnInit {
         return filtroUF && filtroCombustivel && filtroData;
       });
 
-      // 2. Guardamos o total para a interface
+      // 2. Guarda o total para a interface
       this.totalItens = filtrados.length;
 
-      // 3. Aplicamos a paginação (fatiamos o array)
+      // 3. Aplica a paginação 
       const inicioIndice = (pagina - 1) * this.itensPorPagina;
       const fimIndice = inicioIndice + this.itensPorPagina;
       

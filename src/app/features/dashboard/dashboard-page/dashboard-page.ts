@@ -4,8 +4,6 @@ import { AbastecimentoFacade } from '../../../core/facades/abastecimento.facade'
 import { BaseChartDirective } from 'ng2-charts'; // Importação essencial
 import { ChartConfiguration, ChartData, ChartType, Chart, registerables } from 'chart.js';
 import { RouterLink } from '@angular/router';
-Chart.register(...registerables); // Isso registra barras, linhas, eixos, etc.
-
 Chart.register(...registerables); // Registro global obrigatório para o Chart.js v4
 
 @Component({

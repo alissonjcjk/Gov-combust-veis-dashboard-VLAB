@@ -28,6 +28,6 @@ export const AltoContraste: Story = {
     backgrounds: { default: 'dark' },
   },
   play: async () => {
-    // Aqui poderíamos simular o clique no botão de contraste
+    // Aqui daria para simular o toque no botao de contraste
   }
 };

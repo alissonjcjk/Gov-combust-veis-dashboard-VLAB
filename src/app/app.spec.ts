@@ -27,8 +27,9 @@ describe('App', () => {
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
     
-    // ou o router-outlet (que carrega as páginas) existam.
+    // Verifica se o cabeçalho do governo está presente
     const header = compiled.querySelector('app-gov-header');
+    // Verifica se o local de carregamento das rotas está presente
     const outlet = compiled.querySelector('router-outlet');
     
     expect(header || outlet).toBeTruthy();

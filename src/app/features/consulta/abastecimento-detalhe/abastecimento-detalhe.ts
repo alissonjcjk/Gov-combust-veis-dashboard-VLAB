@@ -5,7 +5,6 @@ import { AbastecimentoFacade } from '../../../core/facades/abastecimento.facade'
 import { MaskPlacaPipe, MaskCpfPipe} from '../../../shared/pipes/mask-pipe';
 import { map, switchMap, filter, tap } from 'rxjs'; // Adicione filter e tap
 
-// ... (mantenha os imports)
 
 @Component({
   selector: 'app-abastecimento-detalhe',
@@ -33,7 +32,7 @@ export class AbastecimentoDetalheComponent implements OnInit {
     const correcao = prompt(`Descreva o erro encontrado no abastecimento #${item.id}:`);
   
     if (correcao !== null && correcao.trim() !== '') {
-      console.log('🚀 Enviando correção para o servidor...', {
+      console.log('Enviando correção para o servidor...', {
         id_registro: item.id,
         motorista: item.motorista,
         descricao_erro: correcao,

@@ -12,7 +12,7 @@ describe('ConsultaLista', () => {
       imports: [ConsultaListaComponent],
       providers: [provideRouter([]),
         provideHttpClient(),
-        provideHttpClientTesting()] // Resolve o erro de ActivatedRoute
+        provideHttpClientTesting()] 
     }).compileComponents();
 
     fixture = TestBed.createComponent(ConsultaListaComponent);
