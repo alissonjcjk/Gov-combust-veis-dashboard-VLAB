@@ -173,7 +173,7 @@ Candidato à vaga de Estágio/Graduação — V-Lab
 Visualização principal com indicadores (KPIs) e gráficos de consumo e preço médio.
 
 | Modo Padrão | Modo Alto Contraste |
-|---|---|
+| --- | --- |
 | ![Dashboard](./assets/dashboard.png) | ![Dashboard Contraste](./assets/dashboard-contrast.png) |
 
 ---
@@ -182,7 +182,7 @@ Visualização principal com indicadores (KPIs) e gráficos de consumo e preço 
 Tabela dinâmica com filtros avançados e paginação.
 
 | Listagem Normal | Listagem Alto Contraste |
-|---|---|
+| --- | --- |
 | ![Consulta](./assets/Consulta.png) | ![Consulta Contraste](./assets/Consulta-contrast.png) |
 
 ---
@@ -191,7 +191,7 @@ Tabela dinâmica com filtros avançados e paginação.
 Visão detalhada do registro e simulação de reporte de erros.
 
 | Detalhe do Abastecimento | Reportar Erro |
-|---|---|
+| --- | --- |
 | ![Detalhe](./assets/detalhe-abastecimento.png) | ![Erro](./assets/reportar-erro.png) |
 
 ---
@@ -200,6 +200,7 @@ Visão detalhada do registro e simulação de reporte de erros.
 Componentes e pipes isolados e documentados para o Design System.
 
 | Header Institucional | Pipe de Máscara |
-|---|---|
+| --- | --- |
 | ![Storybook Header](./assets/storybook-GovHeader.png) | ![Storybook Mask](./assets/storybook-mask.png) |
+
 
