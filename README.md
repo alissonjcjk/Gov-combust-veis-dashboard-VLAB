@@ -124,8 +124,8 @@ src/app/
 ├── shared/      # Componentes reutilizáveis (Header, Cards, Botões), Pipes e UI Kit
 ├── features/    # Módulos principais (Dashboard, Consulta, Detalhes)
 └── .storybook/  # Configurações e documentação visual dos componentes
-
-####▶️ Como Executar o Projeto
+```
+▶️ Como Executar o Projeto
 
 1️⃣ Clonar o repositório
 git clone https://github.com/SEU_USUARIO/gov-combustiveis-dashboard.git
