@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { AbastecimentoFacade } from '../../../core/facades/abastecimento.facade';
-import { map, combineLatest, startWith, Observable } from 'rxjs';
+import { map, combineLatest, startWith, Observable, tap } from 'rxjs';
 import { BehaviorSubject } from 'rxjs';
 
 
@@ -22,7 +22,7 @@ export class ConsultaListaComponent implements OnInit {
   private facade = inject(AbastecimentoFacade);
 
   private paginaAtual$ = new BehaviorSubject<number>(1);
-  itensPorPagina = 5; 
+  itensPorPagina = 8; 
   totalItens = 0;
   
   searchControl = new FormControl('', { nonNullable: true }); // Garante que nunca seja null
@@ -36,11 +36,11 @@ export class ConsultaListaComponent implements OnInit {
   // Adiciona a tipagem explícita : Observable<Abastecimento[]>
   abastecimentosFiltrados$ = combineLatest([
     this.facade.abastecimentos$,
-    this.ufControl.valueChanges.pipe(startWith('')),
-    this.combustivelControl.valueChanges.pipe(startWith('')),
-    this.dataInicioControl.valueChanges.pipe(startWith('')),
-    this.dataFimControl.valueChanges.pipe(startWith('')),
-    this.paginaAtual$ 
+    this.ufControl.valueChanges.pipe(startWith(''), tap(() => this.paginaAtual$.next(1))),
+    this.combustivelControl.valueChanges.pipe(startWith(''), tap(() => this.paginaAtual$.next(1))),
+    this.dataInicioControl.valueChanges.pipe(startWith(''), tap(() => this.paginaAtual$.next(1))),
+    this.dataFimControl.valueChanges.pipe(startWith(''), tap(() => this.paginaAtual$.next(1))),
+    this.paginaAtual$
   ]).pipe(
     map(([lista, uf, combustivel, dataInicio, dataFim, pagina]) => {
       // 1. Primeiro filtra a lista completa
