@@ -15,8 +15,12 @@ export class AbastecimentoService {
 
   constructor(private http: HttpClient) {}
 
-  getAbastecimentos(page: number = 1, limit: number = 5): Observable<Abastecimento[]> {
-    return this.http.get<Abastecimento[]>(`${this.API}/abastecimentos?_page=${page}&_limit=${limit}`);
+  getAbastecimentos(page?: number, limit?: number): Observable<Abastecimento[]> {
+    const url = (page && limit) 
+      ? `${this.API}/abastecimentos?_page=${page}&_limit=${limit}`
+      : `${this.API}/abastecimentos`;
+      
+    return this.http.get<Abastecimento[]>(url);
   }
 
   getStats(): Observable<DashboardStats> {

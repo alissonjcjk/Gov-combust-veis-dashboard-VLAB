@@ -27,7 +27,7 @@ export class AbastecimentoFacade {
 
   carregarAbastecimentos(pagina: number = 1): void {
     this._paginaAtual$.next(pagina);
-    this.service.getAbastecimentos(pagina, 5).subscribe(dados => {
+    this.service.getAbastecimentos(pagina, 8).subscribe(dados => {
       this._abastecimentos$.next(dados);
     });
   }
